@@ -4,7 +4,14 @@
 \alias{TrainRankModel}
 \title{Train Multinomial Rank-Based Model}
 \usage{
-TrainRankModel(data, labels, alpha = 0.1, cv = FALSE, nfolds = 5, ...)
+TrainRankModel(
+  data = NULL,
+  labels = NULL,
+  alpha = 0.1,
+  cv = FALSE,
+  nfolds = 5,
+  ...
+)
 }
 \arguments{
 \item{data}{A gene expression matrix with genes as rows and cells
