@@ -1,4 +1,3 @@
-
 #' Extract Expression Matrix from Seurat, Matrix, or Sparse Matrix
 #'
 #' Extracts a gene expression matrix from a Seurat object
@@ -20,15 +19,15 @@
 #'
 #' @export
 ExtractData <- function(data) {
-  if (!inherits(data, c("Seurat", "matrix", "dgCMatrix"))) {
-    stop("Input must be a Seurat object, a numeric matrix, or a dgCMatrix.")
-  }
+    if (!inherits(data, c("Seurat", "matrix", "dgCMatrix"))) {
+        stop("Input must be a Seurat object, a numeric matrix, or a dgCMatrix.")
+    }
 
-  if (inherits(data, "Seurat")) {
-    return(Seurat::GetAssayData(data))
-  }
+    if (inherits(data, "Seurat")) {
+        return(Seurat::GetAssayData(data))
+    }
 
-  return(data)
+    return(data)
 }
 
 
@@ -51,26 +50,27 @@ ExtractData <- function(data) {
 #'
 #' @export
 MaskTopKGenes <- function(data, k = 20) {
+    if (!inherits(data, c("matrix", "dgCMatrix"))) {
+        stop("Input 'data' must be a matrix or dgCMatrix.")
+    }
 
-  if (!inherits(data, c("matrix", "dgCMatrix"))) {
-    stop("Input 'data' must be a matrix or dgCMatrix.")
-  }
+    # Use apply() for performance — converts one column at a time to dense
+    masked <- apply(data, 2, function(col) {
+        top_k_idx <- order(col,
+            decreasing = TRUE
+        )[seq_len(min(k, length(col)))]
+        out <- numeric(length(col))
+        out[top_k_idx] <- col[top_k_idx]
+        out
+    })
 
-  # Use apply() for performance — converts one column at a time to dense
-  masked <- apply(data, 2, function(col) {
-    top_k_idx <- order(col, decreasing = TRUE)[1:min(k, length(col))]
-    out <- numeric(length(col))
-    out[top_k_idx] <- col[top_k_idx]
-    out
-  })
+    # Preserve orientation
+    if (!all(dim(masked) == dim(data))) {
+        masked <- t(masked)
+    }
 
-  # Preserve orientation
-  if (!all(dim(masked) == dim(data))) {
-    masked <- t(masked)
-  }
-
-  dimnames(masked) <- dimnames(data)
-  return(masked)
+    dimnames(masked) <- dimnames(data)
+    return(masked)
 }
 
 
@@ -117,52 +117,51 @@ MaskTopKGenes <- function(data, k = 20) {
 #' raw_expr <- ComputeRankedMatrix(mat, use_data = TRUE)
 #'
 #' @export
-ComputeRankedMatrix <- function(data = NULL,
-                                weight_by_expr = TRUE,
-                                rank_zeros = FALSE,
-                                bin_rank = TRUE,
-                                scale_rank = TRUE,
-                                k = 20,
-                                use_data = FALSE) {
+ComputeRankedMatrix <- function(
+    data = NULL,
+    weight_by_expr = TRUE,
+    rank_zeros = FALSE,
+    bin_rank = TRUE,
+    scale_rank = TRUE,
+    k = 20,
+    use_data = FALSE) {
+    if (use_data) {
+        return(data)
+    }
 
-  if (use_data) {
-    return(data)
-  }
+    data <- MaskTopKGenes(data, k = k)
 
-  data <- MaskTopKGenes(data, k = k)
+    # Replace zeros with NA if rank_zeros is FALSE
+    if (!rank_zeros) {
+        data[data == 0] <- NA
+    }
 
-  # Replace zeros with NA if rank_zeros is FALSE
-  if (!rank_zeros) {
-    data[data == 0] <- NA
-  }
+    # Rank within each column (cell/spot)
+    ranked <- apply(data, 2, rank, ties.method = "average", na.last = "keep")
 
-  # Rank within each column (cell/spot)
-  ranked <- apply(data, 2, rank, ties.method = "average", na.last = "keep")
+    # Optional binning of ranks
+    if (bin_rank) {
+        ranked <- apply(ranked, 1, function(row) {
+            cut(row, breaks = seq(0, k, length.out = 5), labels = FALSE)
+        })
+        ranked <- t(ranked)
+    }
 
-  # Optional binning of ranks
-  if (bin_rank) {
-    ranked <- apply(ranked, 1, function(row) {
-      cut(row, breaks = seq(0, k, length.out = 5), labels = FALSE)
-    })
-    ranked <- t(ranked)
-  }
+    # Replace NAs back to zero
+    if (!rank_zeros) {
+        ranked[is.na(ranked)] <- 0
+    }
 
-  # Replace NAs back to zero
-  if (!rank_zeros) {
-    ranked[is.na(ranked)] <- 0
-  }
+    # Optional weighting by log-transformed expression
+    if (weight_by_expr) {
+        if (!rank_zeros) data[is.na(data)] <- 0
+        ranked <- ranked * log1p(round(data, 2))
+    }
 
-  # Optional weighting by log-transformed expression
-  if (weight_by_expr) {
-    if (!rank_zeros) data[is.na(data)] <- 0
-    ranked <- ranked * log1p(round(data, 2))
-  }
+    # Optional z-score normalization across columns
+    if (scale_rank) {
+        ranked <- scale(ranked)
+    }
 
-  # Optional z-score normalization across columns
-  if (scale_rank) {
-    ranked <- scale(ranked)
-  }
-
-  return(ranked)
+    return(ranked)
 }
-

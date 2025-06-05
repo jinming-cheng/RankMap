@@ -36,9 +36,15 @@ Requires ground truth labels for comparison.
 \examples{
 # Simulated prediction data
 pred_df <- data.frame(
-  cell_id = paste0("cell", 1:10),
-  predicted_cell_type = c("A", "B", "A", "B", "A", "B", "A", "A", "B", "B"),
-  confidence = c(0.95, 0.87, 0.65, 0.48, 0.92, 0.55, 0.73, 0.33, 0.99, 0.60)
+    cell_id = paste0("cell", 1:10),
+    predicted_cell_type = c(
+        "A", "B", "A", "B", "A",
+        "B", "A", "A", "B", "B"
+    ),
+    confidence = c(
+        0.95, 0.87, 0.65, 0.48, 0.92,
+        0.55, 0.73, 0.33, 0.99, 0.60
+    )
 )
 
 # Ground truth labels

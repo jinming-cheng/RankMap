@@ -39,9 +39,9 @@ label (e.g., "unknown") and adds a confidence status column
 \examples{
 # Simulated predictions with confidence
 pred_df <- data.frame(
-  cell_id = paste0("cell", 1:5),
-  predicted_cell_type = c("B", "T", "B", "Myeloid", "T"),
-  confidence = c(0.92, 0.47, 0.88, 0.33, 0.76)
+    cell_id = paste0("cell", 1:5),
+    predicted_cell_type = c("B", "T", "B", "Myeloid", "T"),
+    confidence = c(0.92, 0.47, 0.88, 0.33, 0.76)
 )
 
 # Apply threshold of 0.5 to flag low-confidence cells
@@ -52,8 +52,10 @@ print(result)
 
 # Remove confidence column and use custom label
 # for low-confidence predictions
-result2 <- FilterLowConfidenceCells(pred_df, threshold = 0.6,
-                                    low_conf_label = "low_conf",
-                                    keep_confidence = FALSE)
+result2 <- FilterLowConfidenceCells(pred_df,
+    threshold = 0.6,
+    low_conf_label = "low_conf",
+    keep_confidence = FALSE
+)
 
 }

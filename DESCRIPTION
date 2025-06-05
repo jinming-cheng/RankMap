@@ -23,3 +23,8 @@ Imports:
     rlang,
     Seurat,
     stats
+biocViews: Spatial, SingleCell, Transcriptomics, GeneExpression, Software
+URL: https://github.com/jinming-cheng/RankMap
+BugReports: https://github.com/jinming-cheng/RankMap/issues
+Depends: 
+    R (>= 4.4.0)

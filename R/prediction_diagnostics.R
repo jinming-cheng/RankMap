@@ -1,4 +1,3 @@
-
 #' Evaluate Prediction Accuracy and Confusion by Cell Type
 #'
 #' Computes overall accuracy, per-class accuracy, and confusion matrix
@@ -14,28 +13,27 @@
 #'   \item{confusion_matrix}{Contingency table (true × predicted)}
 #'
 #' @export
-EvaluatePredictionPerformance <- function(prediction_df, truth) {
-  if (length(truth) != nrow(prediction_df)) {
-    stop("Truth labels must match the number of predicted rows.")
-  }
+EvaluatePredictionPerformance <- function(prediction_df = NULL, truth = NULL) {
+    if (length(truth) != nrow(prediction_df)) {
+        stop("Truth labels must match the number of predicted rows.")
+    }
 
-  pred <- prediction_df$predicted_cell_type
-  valid <- !is.na(pred) & pred != "unknown" & pred != "uncertain"
+    pred <- prediction_df$predicted_cell_type
+    valid <- !is.na(pred) & pred != "unknown" & pred != "uncertain"
 
-  overall_accuracy <- mean(pred[valid] == truth[valid])
+    overall_accuracy <- mean(pred[valid] == truth[valid])
 
-  per_class_accuracy <- tapply(
-    pred[valid] == truth[valid],
-    truth[valid],
-    mean
-  )
+    per_class_accuracy <- tapply(
+        pred[valid] == truth[valid],
+        truth[valid],
+        mean
+    )
 
-  confusion <- table(True = truth[valid], Predicted = pred[valid])
+    confusion <- table(True = truth[valid], Predicted = pred[valid])
 
-  list(
-    overall_accuracy = overall_accuracy,
-    per_class_accuracy = per_class_accuracy,
-    confusion_matrix = confusion
-  )
+    list(
+        overall_accuracy = overall_accuracy,
+        per_class_accuracy = per_class_accuracy,
+        confusion_matrix = confusion
+    )
 }
-

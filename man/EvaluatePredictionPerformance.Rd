@@ -4,7 +4,7 @@
 \alias{EvaluatePredictionPerformance}
 \title{Evaluate Prediction Accuracy and Confusion by Cell Type}
 \usage{
-EvaluatePredictionPerformance(prediction_df, truth)
+EvaluatePredictionPerformance(prediction_df = NULL, truth = NULL)
 }
 \arguments{
 \item{prediction_df}{Output from \code{\link{PredictRankModel}
