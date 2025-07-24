@@ -17,7 +17,9 @@ PredictRankModel(
 \item{model}{A fitted model from \code{\link{TrainRankModel}}.}
 
 \item{new_data}{A gene expression matrix with genes as rows and cells
-(or spatial spots) as columns. Can be a Seurat object,
+(or spatial spots) as columns.
+Can be a \code{Seurat} object,
+a \code{SummarizedExperiment} object,
 a dense numeric matrix, or a sparse \code{dgCMatrix}.}
 
 \item{lambda}{Optional lambda value. If \code{NULL},

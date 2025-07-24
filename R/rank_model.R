@@ -7,8 +7,9 @@
 #' @importFrom glmnet glmnet cv.glmnet
 #' @param data A gene expression matrix with genes as rows and cells
 #'             (or spatial spots) as columns.
-#'             Can be a Seurat object, a dense numeric matrix,
-#'             or a sparse \code{dgCMatrix}.
+#'             Can be a \code{Seurat} object,
+#'             a \code{SummarizedExperiment} object,
+#'             a dense numeric matrix, or a sparse \code{dgCMatrix}.
 #' @param labels A vector of cell type labels (one per column of \code{data}).
 #' @param alpha Elastic net mixing parameter. 1 = LASSO, 0 = Ridge.
 #'              Default is \code{0.1}.
@@ -77,7 +78,9 @@ TrainRankModel <- function(
 #' @importFrom stats predict
 #' @param model A fitted model from \code{\link{TrainRankModel}}.
 #' @param new_data A gene expression matrix with genes as rows and cells
-#'                 (or spatial spots) as columns. Can be a Seurat object,
+#'                 (or spatial spots) as columns.
+#'                 Can be a \code{Seurat} object,
+#'                 a \code{SummarizedExperiment} object,
 #'                 a dense numeric matrix, or a sparse \code{dgCMatrix}.
 #' @param lambda Optional lambda value. If \code{NULL},
 #'               uses \code{lambda.min} (if available), else \code{0.01}.
@@ -169,19 +172,20 @@ PredictRankModel <- function(
 #' optionally performs cross-validation, and returns predictions
 #' with confidence scores or probabilities.
 #'
-#' @param data Reference gene expression matrix (genes × cells),
-#'             or a Seurat object.
-#' @param labels A character or factor vector of cell type labels for
-#'               columns of \code{data}.
-#' @param new_data New data to annotate. Same format as \code{data}
-#'                 (matrix, \code{dgCMatrix}, or Seurat object).
+#' @param ref_data Reference gene expression matrix (genes x cells),
+#'                 a \code{Seurat} object,
+#'                 or a \code{SummarizedExperiment} object.
+#' @param ref_labels A character or factor vector of cell type labels for
+#'               columns of \code{ref_data}.
+#' @param new_data New data to annotate. Same format as \code{ref_data}
+#'                 (matrix, \code{dgCMatrix}, \code{Seurat} object
+#'                 or \code{SummarizedExperiment} object).
 #' @param n_feature_max Maximum number of genes to use when more than
 #'                      500 genes are shared. Default is \code{500}.
 #' @param k Number of top expressed genes to retain per cell (ranking).
 #'          Default is \code{20}.
 #' @param alpha Elastic net mixing parameter for \code{glmnet}.
 #'              Default is \code{0.1}.
-#' @param seed Random seed for reproducibility. Default is \code{42}.
 #' @param cv Logical. Whether to use \code{cv.glmnet} for
 #'           cross-validation. Default is \code{FALSE}.
 #' @param nfolds Number of folds for cross-validation. Default is \code{5}.
@@ -211,18 +215,18 @@ PredictRankModel <- function(
 #' # ref_mat <- matrix(runif(1000), nrow = 100)
 #' # test_mat <- matrix(runif(1000), nrow = 100)
 #' # labels <- sample(c("A", "B"), ncol(ref_mat), TRUE)
-#' # result <- RankMap(data = ref_mat, labels = labels,
+#' # set.seed(42)
+#' # result <- RankMap(ref_data = ref_mat, ref_labels = labels,
 #' #                   new_data = test_mat, return_model = TRUE)
 #'
 #' @export
 RankMap <- function(
-    data = NULL,
-    labels = NULL,
+    ref_data = NULL,
+    ref_labels = NULL,
     new_data = NULL,
     n_feature_max = 500,
     k = 20,
     alpha = 0.1,
-    seed = 42,
     cv = FALSE,
     nfolds = 5,
     lambda = NULL,
@@ -232,7 +236,7 @@ RankMap <- function(
     return_model = FALSE,
     ...) {
     # Extract matrices
-    ref_mat <- ExtractData(data)
+    ref_mat <- ExtractData(ref_data)
     test_mat <- ExtractData(new_data)
 
     # Find common genes
@@ -262,10 +266,9 @@ RankMap <- function(
     # Train model
     model <- TrainRankModel(
         data = ref_mat,
-        labels = labels,
+        labels = ref_labels,
         k = k,
         alpha = alpha,
-        seed = seed,
         cv = cv,
         nfolds = nfolds,
         ...

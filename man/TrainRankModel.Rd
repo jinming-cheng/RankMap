@@ -16,8 +16,9 @@ TrainRankModel(
 \arguments{
 \item{data}{A gene expression matrix with genes as rows and cells
 (or spatial spots) as columns.
-Can be a Seurat object, a dense numeric matrix,
-or a sparse \code{dgCMatrix}.}
+Can be a \code{Seurat} object,
+a \code{SummarizedExperiment} object,
+a dense numeric matrix, or a sparse \code{dgCMatrix}.}
 
 \item{labels}{A vector of cell type labels (one per column of \code{data}).}
 

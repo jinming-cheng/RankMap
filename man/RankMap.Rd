@@ -5,13 +5,12 @@
 \title{RankMap: Train and Predict Cell Types Using Top-Ranked Genes}
 \usage{
 RankMap(
-  data = NULL,
-  labels = NULL,
+  ref_data = NULL,
+  ref_labels = NULL,
   new_data = NULL,
   n_feature_max = 500,
   k = 20,
   alpha = 0.1,
-  seed = 42,
   cv = FALSE,
   nfolds = 5,
   lambda = NULL,
@@ -23,14 +22,16 @@ RankMap(
 )
 }
 \arguments{
-\item{data}{Reference gene expression matrix (genes × cells),
-or a Seurat object.}
+\item{ref_data}{Reference gene expression matrix (genes x cells),
+a \code{Seurat} object,
+or a \code{SummarizedExperiment} object.}
 
-\item{labels}{A character or factor vector of cell type labels for
-columns of \code{data}.}
+\item{ref_labels}{A character or factor vector of cell type labels for
+columns of \code{ref_data}.}
 
-\item{new_data}{New data to annotate. Same format as \code{data}
-(matrix, \code{dgCMatrix}, or Seurat object).}
+\item{new_data}{New data to annotate. Same format as \code{ref_data}
+(matrix, \code{dgCMatrix}, \code{Seurat} object
+or \code{SummarizedExperiment} object).}
 
 \item{n_feature_max}{Maximum number of genes to use when more than
 500 genes are shared. Default is \code{500}.}
@@ -40,8 +41,6 @@ Default is \code{20}.}
 
 \item{alpha}{Elastic net mixing parameter for \code{glmnet}.
 Default is \code{0.1}.}
-
-\item{seed}{Random seed for reproducibility. Default is \code{42}.}
 
 \item{cv}{Logical. Whether to use \code{cv.glmnet} for
 cross-validation. Default is \code{FALSE}.}
@@ -87,7 +86,8 @@ with confidence scores or probabilities.
 # ref_mat <- matrix(runif(1000), nrow = 100)
 # test_mat <- matrix(runif(1000), nrow = 100)
 # labels <- sample(c("A", "B"), ncol(ref_mat), TRUE)
-# result <- RankMap(data = ref_mat, labels = labels,
+# set.seed(42)
+# result <- RankMap(ref_data = ref_mat, ref_labels = labels,
 #                   new_data = test_mat, return_model = TRUE)
 
 }

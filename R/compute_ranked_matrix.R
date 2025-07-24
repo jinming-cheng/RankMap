@@ -1,14 +1,15 @@
-#' Extract Expression Matrix from Seurat, Matrix, or Sparse Matrix
+#' Extract Expression Matrix from Seurat, SummarizedExperiment, or Matrix
 #'
-#' Extracts a gene expression matrix from a Seurat object
-#' (default assay and "data" slot),
-#' or returns the input matrix if already provided as a dense or sparse matrix.
+#' Extracts a gene expression matrix from a \code{Seurat} object
+#' (default assay and \code{"data"} slot),
+#' a \code{SummarizedExperiment} object (assay named \code{"logcounts"}),
+#' or returns the input matrix if it is already a dense or sparse matrix.
 #'
-#' @param data A Seurat object, a dense numeric matrix,
-#'             or a sparse \code{dgCMatrix}.
+#' @param data A \code{Seurat} object, a \code{SummarizedExperiment} object,
+#'   a dense numeric matrix, or a sparse matrix of class \code{dgCMatrix}
 #'
-#' @return A gene expression matrix (either dense or sparse),
-#'         with genes as rows and cells/spots as columns.
+#' @return A numeric gene expression matrix (dense or sparse),
+#'         with genes as rows and cells or spots as columns.
 #'
 #' @examples
 #' # From Seurat object:
@@ -19,12 +20,24 @@
 #'
 #' @export
 ExtractData <- function(data) {
-    if (!inherits(data, c("Seurat", "matrix", "dgCMatrix"))) {
-        stop("Input must be a Seurat object, a numeric matrix, or a dgCMatrix.")
+    if (!inherits(data, c(
+        "Seurat", "SummarizedExperiment",
+        "matrix", "dgCMatrix"
+    ))) {
+        msg <- paste0(
+            "Input must be a Seurat object, ",
+            "a SummarizedExperiment object, ",
+            "a numeric matrix, or a dgCMatrix."
+        )
+        stop(msg)
     }
 
     if (inherits(data, "Seurat")) {
         return(Seurat::GetAssayData(data))
+    }
+
+    if (inherits(data, "SummarizedExperiment")) {
+        return(SummarizedExperiment::assay(data, "logcounts"))
     }
 
     return(data)
@@ -37,8 +50,9 @@ ExtractData <- function(data) {
 #' in each column of a gene expression matrix.
 #' It supports both dense and sparse inputs.
 #'
-#' @param data A numeric matrix or sparse \code{dgCMatrix}.
-#'             Rows = genes, columns = cells or spots.
+#' @param data A gene expression matrix with genes as rows and cells
+#'             (or spatial spots) as columns.
+#'             Can be a dense numeric matrix, or a sparse \code{dgCMatrix}.
 #' @param k Integer. Number of top expressed genes to retain per column.
 #'          Default is \code{20}.
 #'
@@ -85,9 +99,9 @@ MaskTopKGenes <- function(data, k = 20) {
 #' This is useful for benchmarking performance
 #' of rank-based versus raw log-normalized expression models.
 #'
-#' @param data A gene expression matrix. Can be a dense \code{matrix}
-#'             or a sparse \code{Matrix::dgCMatrix},
-#'             where rows are genes and columns are cells or spatial spots.
+#' @param data A gene expression matrix with genes as rows and cells
+#'             (or spatial spots) as columns.
+#'             Can be a dense numeric matrix, or a sparse \code{dgCMatrix}.
 #' @param weight_by_expr Logical. Whether to weight the ranks by
 #'                       log-transformed expression values.
 #'                       Default is \code{TRUE}.
@@ -118,7 +132,7 @@ MaskTopKGenes <- function(data, k = 20) {
 #'
 #' @export
 ComputeRankedMatrix <- function(
-    data = NULL,
+    data,
     weight_by_expr = TRUE,
     rank_zeros = FALSE,
     bin_rank = TRUE,

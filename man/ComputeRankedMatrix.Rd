@@ -5,7 +5,7 @@
 \title{Compute Ranked Gene Expression Matrix}
 \usage{
 ComputeRankedMatrix(
-  data = NULL,
+  data,
   weight_by_expr = TRUE,
   rank_zeros = FALSE,
   bin_rank = TRUE,
@@ -15,9 +15,9 @@ ComputeRankedMatrix(
 )
 }
 \arguments{
-\item{data}{A gene expression matrix. Can be a dense \code{matrix}
-or a sparse \code{Matrix::dgCMatrix},
-where rows are genes and columns are cells or spatial spots.}
+\item{data}{A gene expression matrix with genes as rows and cells
+(or spatial spots) as columns.
+Can be a dense numeric matrix, or a sparse \code{dgCMatrix}.}
 
 \item{weight_by_expr}{Logical. Whether to weight the ranks by
 log-transformed expression values.

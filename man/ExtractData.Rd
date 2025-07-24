@@ -2,22 +2,23 @@
 % Please edit documentation in R/compute_ranked_matrix.R
 \name{ExtractData}
 \alias{ExtractData}
-\title{Extract Expression Matrix from Seurat, Matrix, or Sparse Matrix}
+\title{Extract Expression Matrix from Seurat, SummarizedExperiment, or Matrix}
 \usage{
 ExtractData(data)
 }
 \arguments{
-\item{data}{A Seurat object, a dense numeric matrix,
-or a sparse \code{dgCMatrix}.}
+\item{data}{A \code{Seurat} object, a \code{SummarizedExperiment} object,
+a dense numeric matrix, or a sparse matrix of class \code{dgCMatrix}}
 }
 \value{
-A gene expression matrix (either dense or sparse),
-with genes as rows and cells/spots as columns.
+A numeric gene expression matrix (dense or sparse),
+with genes as rows and cells or spots as columns.
 }
 \description{
-Extracts a gene expression matrix from a Seurat object
-(default assay and "data" slot),
-or returns the input matrix if already provided as a dense or sparse matrix.
+Extracts a gene expression matrix from a \code{Seurat} object
+(default assay and \code{"data"} slot),
+a \code{SummarizedExperiment} object (assay named \code{"logcounts"}),
+or returns the input matrix if it is already a dense or sparse matrix.
 }
 \examples{
 # From Seurat object:

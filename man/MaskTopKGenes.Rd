@@ -7,8 +7,9 @@
 MaskTopKGenes(data, k = 20)
 }
 \arguments{
-\item{data}{A numeric matrix or sparse \code{dgCMatrix}.
-Rows = genes, columns = cells or spots.}
+\item{data}{A gene expression matrix with genes as rows and cells
+(or spatial spots) as columns.
+Can be a dense numeric matrix, or a sparse \code{dgCMatrix}.}
 
 \item{k}{Integer. Number of top expressed genes to retain per column.
 Default is \code{20}.}

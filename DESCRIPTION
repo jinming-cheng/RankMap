@@ -22,7 +22,8 @@ Imports:
     matrixStats,
     rlang,
     Seurat,
-    stats
+    stats,
+    SummarizedExperiment
 biocViews: Spatial, SingleCell, Transcriptomics, GeneExpression, Software
 URL: https://github.com/jinming-cheng/RankMap
 BugReports: https://github.com/jinming-cheng/RankMap/issues
