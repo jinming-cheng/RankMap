@@ -21,10 +21,11 @@ a \code{SummarizedExperiment} object (assay named \code{"logcounts"}),
 or returns the input matrix if it is already a dense or sparse matrix.
 }
 \examples{
-# From Seurat object:
-# mat <- ExtractData(seurat_obj)
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+    package = "RankMap"
+))
 
-# From dense or sparse matrix:
-# mat <- ExtractData(matrix_data)
+# From Seurat object:
+mat <- ExtractData(seu_sc)
 
 }

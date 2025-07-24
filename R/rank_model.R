@@ -24,10 +24,25 @@
 #' @seealso \code{\link{ComputeRankedMatrix}}, \code{\link{PredictRankModel}}
 #'
 #' @examples
-#' mat <- matrix(runif(1000), nrow = 100)
-#' labels <- sample(c("TypeA", "TypeB"), ncol(mat), replace = TRUE)
+#' # Read in single-cell reference data
+#' seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Extract normalized expression data
+#' mat <- ExtractData(seu_sc)
+#'
+#' # Train a model
 #' set.seed(42)
-#' model <- TrainRankModel(mat, labels, cv = TRUE, nfolds = 3)
+#' model <- TrainRankModel(mat, seu_sc$cell_type)
+#'
+#' # Train a model with cross-validation
+#' model <- TrainRankModel(
+#'     data = mat,
+#'     labels = seu_sc$cell_type,
+#'     cv = TRUE,
+#'     nfolds = 3
+#' )
 #'
 #' @export
 TrainRankModel <- function(
@@ -94,6 +109,31 @@ TrainRankModel <- function(
 #' @return A character vector (default),
 #'         a matrix (if \code{return_probs = TRUE}),
 #'         or a data frame (if \code{return_confidence = TRUE}).
+#'
+#' @examples
+#' # Read in single-cell reference data
+#' seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Read in Xenium spatial data
+#' seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Extract normalized expression data
+#' common_genes <- intersect(rownames(seu_sc), rownames(seu_xen))
+#' mat <- ExtractData(seu_sc)[common_genes, ]
+#' new_mat <- ExtractData(seu_xen)[common_genes, ]
+#'
+#' # Train a model
+#' set.seed(42)
+#' model <- TrainRankModel(mat, seu_sc$cell_type)
+#'
+#' # Predict cell type
+#' pred <- PredictRankModel(model, new_mat)
+#'
+#' table(predict = pred, truth = seu_xen$cell_type_SingleR)
 #'
 #' @export
 PredictRankModel <- function(
@@ -212,12 +252,23 @@ PredictRankModel <- function(
 #'         \code{model} if \code{return_model = TRUE}.
 #'
 #' @examples
-#' # ref_mat <- matrix(runif(1000), nrow = 100)
-#' # test_mat <- matrix(runif(1000), nrow = 100)
-#' # labels <- sample(c("A", "B"), ncol(ref_mat), TRUE)
-#' # set.seed(42)
-#' # result <- RankMap(ref_data = ref_mat, ref_labels = labels,
-#' #                   new_data = test_mat, return_model = TRUE)
+#' # Read in single-cell reference data
+#' seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Read in Xenium spatial data
+#' seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Predict cell type for spatial data using single-cell data as reference
+#' pred_df <- RankMap(
+#'     ref_data = seu_sc,
+#'     ref_labels = seu_sc$cell_type,
+#'     new_data = seu_xen
+#' )
+#' head(pred_df)
 #'
 #' @export
 RankMap <- function(

@@ -42,10 +42,25 @@ using ranked gene expression. Optionally performs cross-validation
 to select the optimal regularization parameter.
 }
 \examples{
-mat <- matrix(runif(1000), nrow = 100)
-labels <- sample(c("TypeA", "TypeB"), ncol(mat), replace = TRUE)
+# Read in single-cell reference data
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+    package = "RankMap"
+))
+
+# Extract normalized expression data
+mat <- ExtractData(seu_sc)
+
+# Train a model
 set.seed(42)
-model <- TrainRankModel(mat, labels, cv = TRUE, nfolds = 3)
+model <- TrainRankModel(mat, seu_sc$cell_type)
+
+# Train a model with cross-validation
+model <- TrainRankModel(
+    data = mat,
+    labels = seu_sc$cell_type,
+    cv = TRUE,
+    nfolds = 3
+)
 
 }
 \seealso{

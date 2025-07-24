@@ -83,11 +83,22 @@ optionally performs cross-validation, and returns predictions
 with confidence scores or probabilities.
 }
 \examples{
-# ref_mat <- matrix(runif(1000), nrow = 100)
-# test_mat <- matrix(runif(1000), nrow = 100)
-# labels <- sample(c("A", "B"), ncol(ref_mat), TRUE)
-# set.seed(42)
-# result <- RankMap(ref_data = ref_mat, ref_labels = labels,
-#                   new_data = test_mat, return_model = TRUE)
+# Read in single-cell reference data
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+    package = "RankMap"
+))
+
+# Read in Xenium spatial data
+seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+    package = "RankMap"
+))
+
+# Predict cell type for spatial data using single-cell data as reference
+pred_df <- RankMap(
+    ref_data = seu_sc,
+    ref_labels = seu_sc$cell_type,
+    new_data = seu_xen
+)
+head(pred_df)
 
 }

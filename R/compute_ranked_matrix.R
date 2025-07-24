@@ -12,11 +12,12 @@
 #'         with genes as rows and cells or spots as columns.
 #'
 #' @examples
-#' # From Seurat object:
-#' # mat <- ExtractData(seurat_obj)
+#' seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+#'     package = "RankMap"
+#' ))
 #'
-#' # From dense or sparse matrix:
-#' # mat <- ExtractData(matrix_data)
+#' # From Seurat object:
+#' mat <- ExtractData(seu_sc)
 #'
 #' @export
 ExtractData <- function(data) {

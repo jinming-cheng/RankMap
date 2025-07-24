@@ -45,3 +45,29 @@ RankMap model. Supports both \code{glmnet} and \code{cv.glmnet}.
 Optionally returns a data frame with predicted cell types
 and confidence scores.
 }
+\examples{
+# Read in single-cell reference data
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+    package = "RankMap"
+))
+
+# Read in Xenium spatial data
+seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+    package = "RankMap"
+))
+
+# Extract normalized expression data
+common_genes <- intersect(rownames(seu_sc), rownames(seu_xen))
+mat <- ExtractData(seu_sc)[common_genes, ]
+new_mat <- ExtractData(seu_xen)[common_genes, ]
+
+# Train a model
+set.seed(42)
+model <- TrainRankModel(mat, seu_sc$cell_type)
+
+# Predict cell type
+pred <- PredictRankModel(model, new_mat)
+
+table(predict = pred, truth = seu_xen$cell_type_SingleR)
+
+}

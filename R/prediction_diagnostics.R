@@ -12,6 +12,30 @@
 #'   \item{per_class_accuracy}{Accuracy per true cell type}
 #'   \item{confusion_matrix}{Contingency table (true × predicted)}
 #'
+#' @examples
+#' # Read in single-cell reference data
+#' seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Read in Xenium spatial data
+#' seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+#'     package = "RankMap"
+#' ))
+#'
+#' # Predict cell type for Xenium data
+#' prediction_df <- RankMap(
+#'     ref_data = seu_sc,
+#'     ref_labels = seu_sc$cell_type,
+#'     new_data = seu_xen
+#' )
+#'
+#' performance <- EvaluatePredictionPerformance(
+#'     prediction_df = prediction_df,
+#'     truth = seu_xen$cell_type_SingleR
+#' )
+#' performance
+#'
 #' @export
 EvaluatePredictionPerformance <- function(prediction_df = NULL, truth = NULL) {
     if (length(truth) != nrow(prediction_df)) {
