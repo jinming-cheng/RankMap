@@ -29,3 +29,6 @@ URL: https://github.com/jinming-cheng/RankMap
 BugReports: https://github.com/jinming-cheng/RankMap/issues
 Depends: 
     R (>= 4.4.0)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
