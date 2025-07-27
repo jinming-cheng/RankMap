@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%"
+)
+```
+
+# RankMap
+
+RankMap is an R package for performing reference-based 
+cell type annotation in single-cell and spatial transcriptomics data 
+using top-ranked gene expression profiles and multinomial modeling.
+    
+    
+<!-- badges: start -->
+<!-- [![R-CMD-check](https://github.com/jinming-cheng/RankMap/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/jinming-cheng/RankMap/actions) -->
+<!-- [![Codecov test coverage](https://codecov.io/gh/jinming-cheng/RankMap/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/RankMap) -->
+<!-- badges: end -->
+
+
+## Installation
+
+The *RankMap* package can be installed from GitHub by using:
+
+``` r
+devtools::install_github("jinming-cheng/RankMap")
+```
+
+## Quick Start
+
+An example of predicting cell types for Xenium spatial data using 
+a well-annotated single-cell dataset as reference
+```r
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+    package = "RankMap"
+))
+
+seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+    package = "RankMap"
+))
+
+pred_df <- RankMap(
+    ref_data = seu_sc,
+    ref_labels = seu_sc$cell_type,
+    new_data = seu_xen
+)
+head(pred_df)
+```
