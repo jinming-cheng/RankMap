@@ -4,13 +4,22 @@
 \alias{EvaluatePredictionPerformance}
 \title{Evaluate Prediction Accuracy and Confusion by Cell Type}
 \usage{
-EvaluatePredictionPerformance(prediction_df = NULL, truth = NULL)
+EvaluatePredictionPerformance(
+  prediction_df = NULL,
+  truth = NULL,
+  low_conf_label = "unknown"
+)
 }
 \arguments{
 \item{prediction_df}{Output from \code{\link{PredictRankModel}
 (return_confidence = TRUE)} or filtered version.}
 
 \item{truth}{A vector of true labels matching \code{prediction_df}.}
+
+\item{low_conf_label}{Character. Label used for low-confidence predictions
+(e.g., \code{"unknown"} or \code{"uncertain"}).
+These will be excluded from evaluation.
+Set to \code{NULL} to include all predictions.}
 }
 \value{
 A list with:

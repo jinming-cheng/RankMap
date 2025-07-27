@@ -6,7 +6,10 @@
 #' @param prediction_df Output from \code{\link{PredictRankModel}
 #'                      (return_confidence = TRUE)} or filtered version.
 #' @param truth A vector of true labels matching \code{prediction_df}.
-#'
+#' @param low_conf_label Character. Label used for low-confidence predictions
+#'                       (e.g., \code{"unknown"} or \code{"uncertain"}).
+#'                       These will be excluded from evaluation.
+#'                       Set to \code{NULL} to include all predictions.
 #' @return A list with:
 #'   \item{overall_accuracy}{Proportion of correct predictions}
 #'   \item{per_class_accuracy}{Accuracy per true cell type}
@@ -37,13 +40,21 @@
 #' performance
 #'
 #' @export
-EvaluatePredictionPerformance <- function(prediction_df = NULL, truth = NULL) {
+EvaluatePredictionPerformance <- function(
+    prediction_df = NULL,
+    truth = NULL,
+    low_conf_label = "unknown") {
     if (length(truth) != nrow(prediction_df)) {
         stop("Truth labels must match the number of predicted rows.")
     }
 
     pred <- prediction_df$predicted_cell_type
-    valid <- !is.na(pred) & pred != "unknown" & pred != "uncertain"
+
+    # Exclude low-confidence predictions
+    valid <- !is.na(pred)
+    if (!is.null(low_conf_label)) {
+        valid <- valid & (pred != low_conf_label)
+    }
 
     overall_accuracy <- mean(pred[valid] == truth[valid])
 
