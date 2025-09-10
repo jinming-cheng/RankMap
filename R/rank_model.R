@@ -58,7 +58,11 @@ TrainRankModel <- function(
     rank_expr <- ComputeRankedMatrix(data, ...)
 
     # Transpose to cells (rows) × genes (columns)
-    rank_expr <- t(rank_expr)
+    if (inherits(rank_expr, "dgCMatrix")) {
+        rank_expr <- Matrix::t(rank_expr)
+    } else {
+        rank_expr <- t(rank_expr)
+    }
 
     labels <- as.factor(labels)
 
@@ -154,7 +158,13 @@ PredictRankModel <- function(
     }
 
     rank_expr <- ComputeRankedMatrix(new_data, ...)
-    rank_expr <- t(rank_expr)
+
+    if (inherits(rank_expr, "dgCMatrix")) {
+        rank_expr <- Matrix::t(rank_expr)
+    } else {
+        rank_expr <- t(rank_expr)
+    }
+
 
     lambda_to_use <- lambda
     if (is.null(lambda)) {
