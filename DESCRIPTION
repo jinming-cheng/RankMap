@@ -1,6 +1,6 @@
 Package: RankMap
 Title: Rank-Based Reference Mapping for Cell Type Annotation
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Jinming", 
            family = "Cheng", 

@@ -3,6 +3,7 @@
 export(ComputeRankedMatrix)
 export(EvaluatePredictionPerformance)
 export(ExtractData)
+export(FactorSorted)
 export(FilterLowConfidenceCells)
 export(MaskTopKGenes)
 export(OptimizeConfidenceThreshold)
