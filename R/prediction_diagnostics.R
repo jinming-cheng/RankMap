@@ -50,6 +50,9 @@ EvaluatePredictionPerformance <- function(
 
     pred <- prediction_df$predicted_cell_type
 
+    pred <- as.character(pred)
+    truth <- as.character(truth)
+
     # Exclude low-confidence predictions
     valid <- !is.na(pred)
     if (!is.null(low_conf_label)) {
