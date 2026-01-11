@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# RankMap
+# RankMap <img src="man/figures/RankMap.png" align="right" alt="" width="120" />
 
 RankMap is an R package for performing reference-based 
 cell type annotation in single-cell and spatial transcriptomics data 
@@ -39,6 +39,7 @@ devtools::install_github("jinming-cheng/RankMap")
 An example of predicting cell types for Xenium spatial data using 
 a well-annotated single-cell dataset as reference
 ```r
+# load data
 seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
     package = "RankMap"
 ))
@@ -47,10 +48,12 @@ seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
     package = "RankMap"
 ))
 
+# predict cell types, if unsure about k (default 20), set k to 100.
 pred_df <- RankMap(
     ref_data = seu_sc,
     ref_labels = seu_sc$cell_type,
     new_data = seu_xen
+    k = 100
 )
 head(pred_df)
 ```
