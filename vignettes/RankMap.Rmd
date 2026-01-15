@@ -1,0 +1,221 @@
+---
+title: "Getting Started with RankMap"
+author:
+  - name: Jinming Cheng
+    affiliation:
+    - &nus_cbds Centre for Biomedical Data Science,
+                Duke-NUS Medical School,
+                Singapore 169857,
+                Singapore
+               
+    # email: jinming.cheng@outlook.com
+    
+
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+vignette: >
+  %\VignetteIndexEntry{Getting Started with RankMap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+
+output:
+  BiocStyle::html_document:
+    toc_float: false
+bibliography-style: plain
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    eval = TRUE, 
+    collapse = TRUE,
+    comment = "#>",
+    out.width = "100%",
+    dev = "png",
+    dpi = 60,
+    fig.height = 4.2,
+    fig.width = 5.6
+)
+```
+
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %                                                 % -->
+
+# Introduction
+
+**RankMap** is an R package for fast, robust, and scalable reference-based 
+cell type annotation in single-cell and spatial transcriptomics data. 
+It works by transforming gene expression matrices into sparse ranked 
+representations and training a multinomial logistic regression model 
+using the `glmnet` framework. This rank-based approach improves 
+robustness to batch effects, platform differences, and partial gene 
+coverage—especially beneficial for technologies such as Xenium and MERFISH.
+
+**RankMap** supports commonly used data structures 
+including `Seurat`, `SingleCellExperiment`, and `SpatialExperiment`. 
+The workflow includes flexible preprocessing steps such as 
+top-K gene masking, binning, expression weighting, and scaling, 
+followed by efficient model training and rapid prediction.
+
+Compared to existing tools such as **SingleR**, **RCTD** (via **spacexr**),
+and **Azimuth**, **RankMap** achieves comparable or superior accuracy 
+with significantly faster runtime, making it particularly well suited 
+for high-throughput applications on large datasets.
+
+This vignette provides a quick-start guide to using **RankMap** for 
+cell type prediction.
+
+
+<!-- %                                                 % -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %                                                 % -->
+
+# Installation
+
+Install **RankMap** from GitHub:
+
+```{r, eval=FALSE}
+devtools::install_github("jinming-cheng/RankMap")
+```
+
+<!-- %                                                 % -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %                                                 % -->
+
+# Quick Start (Seurat Objects)
+
+## Load Data
+
+```{r}
+library(RankMap)
+```
+
+Load example single-cell RNA-seq dataset (17,597 genes x 150 cells):
+
+```{r}
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds", package = "RankMap"))
+seu_sc
+```
+
+Load example Xenium spatial transcriptomics dataset (313 genes x 150 cells):
+
+```{r}
+seu_xen <- readRDS(system.file("extdata", "seu_xen.rds", package = "RankMap"))
+seu_xen
+```
+
+## Predict Cell Types
+
+Run cell type prediction using the `RankMap()` function. 
+By default, RankMap uses normalized expression from the "data" slot. 
+For spatial datasets with limited gene panels, 
+a smaller `k` (e.g., `k = 20`) is typically sufficient. 
+For single-cell RNA-seq with deeper coverage, 
+larger values of `k` (e.g., 100 or 200) are generally recommended.
+
+```{r}
+pred_df <- RankMap(
+  ref_data = seu_sc,
+  ref_labels = seu_sc$cell_type,
+  new_data = seu_xen,
+  k = 20
+)
+```
+
+The result is a `data.frame` containing: 
+`cell_id`, `predicted_cell_type` and `confidence`
+
+```{r}
+head(pred_df)
+```
+
+## Evaluate Performance
+
+If ground truth labels are available, you can evaluate prediction accuracy using:
+
+```{r}
+perf <- EvaluatePredictionPerformance(
+  prediction_df = pred_df,
+  truth = seu_xen$cell_type_SingleR
+)
+perf
+```
+
+<!-- %                                                 % -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %                                                 % -->
+
+# Quick Start (SummarizedExperiment Objects)
+
+## Prepare Data
+
+Convert `Seurat` objects into `SingleCellExperiment` objects:
+
+```{r}
+library(SingleCellExperiment)
+
+sce_sc <- SingleCellExperiment(
+  assays = list(
+    counts = GetAssayData(seu_sc, layer = "counts"),
+    logcounts = GetAssayData(seu_sc, layer = "data")
+  ),
+  colData = seu_sc@meta.data
+)
+
+sce_sp <- SingleCellExperiment(
+  assays = list(
+    counts = GetAssayData(seu_xen, layer = "counts"),
+    logcounts = GetAssayData(seu_xen, layer = "data")
+  ),
+  colData = seu_xen@meta.data
+)
+```
+
+## Predict Cell Types
+
+Run cell type prediction using the `RankMap()` function. 
+Set `k = 100` as a reasonable default when the optimal number of top-ranked genes is unknown. 
+When using `SummarizedExperiment` input, the `logcounts` assay is used automatically.
+
+```{r}
+pred_df <- RankMap(
+  ref_data = sce_sc,
+  ref_labels = sce_sc$cell_type,
+  new_data = sce_sp,
+  k = 100
+)
+```
+
+## Evaluate Performance
+
+Compare predictions with ground truth labels:
+
+```{r}
+perf <- EvaluatePredictionPerformance(
+  prediction_df = pred_df,
+  truth = sce_sp$cell_type_SingleR
+)
+perf
+```
+
+
+<!-- %                                                 % -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+\pagebreak
