@@ -1,15 +1,20 @@
 Package: RankMap
-Title: Rank-Based Reference Mapping for Cell Type Annotation
-Version: 0.2.0
+Title: Rank-based reference mapping for fast and robust cell type annotation 
+    in spatial and single-cell transcriptomics
+Version: 0.3.0
 Authors@R: 
     person(given = "Jinming", 
            family = "Cheng", 
            email="jinming.cheng@outlook.com", 
            role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3806-4694"))
-Description: RankMap is an R package for performing reference-based 
-    cell type annotation in single-cell and spatial transcriptomics data 
-    using top-ranked gene expression profiles and multinomial modeling.
+Description: RankMap is a fast and scalable tool for reference-based 
+    cell type annotation of single-cell and spatial transcriptomics data. 
+    It uses ranked gene expression and multinomial regression to achieve 
+    robust predictions, even with partial gene coverage. 
+    Compatible with Seurat, SingleCellExperiment, and SpatialExperiment 
+    objects, RankMap offers flexible preprocessing and significantly 
+    faster runtime than tools like SingleR, Azimuth, and RCTD.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -19,16 +24,21 @@ Imports:
     glmnet,
     graphics,
     magrittr,
+    Matrix,
     matrixStats,
     rlang,
     Seurat,
     stats,
     SummarizedExperiment
-biocViews: Spatial, SingleCell, Transcriptomics, GeneExpression, Software
+biocViews: Spatial, SingleCell, Transcriptomics, GeneExpression, 
+    Annotation, Regression, Preprocessing, Software
 URL: https://github.com/jinming-cheng/RankMap
 BugReports: https://github.com/jinming-cheng/RankMap/issues
 Depends: 
     R (>= 4.4.0)
 Suggests: 
+    knitr,
+    SingleCellExperiment,
     testthat (>= 3.0.0)
+VignetteBuilder: knitr
 Config/testthat/edition: 3

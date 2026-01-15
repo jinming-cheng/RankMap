@@ -3,9 +3,19 @@
 
 # RankMap <img src="man/figures/RankMap.png" align="right" alt="" width="120" />
 
-RankMap is an R package for performing reference-based cell type
-annotation in single-cell and spatial transcriptomics data using
-top-ranked gene expression profiles and multinomial modeling.
+RankMap is a fast, robust, and scalable method for reference-based cell type 
+annotation of single-cell and spatial transcriptomics data. 
+It transforms gene expression matrices into sparse ranked representations 
+and applies multinomial regression via the glmnet framework to 
+predict cell types. 
+This rank-based strategy enhances robustness to batch effects, 
+platform differences, and partial gene coverage, making RankMap especially 
+suitable for technologies like Xenium and MERFISH. 
+The package supports flexible preprocessing, 
+fast model training and prediction, and is compatible with 
+Seurat, SingleCellExperiment, and SpatialExperiment objects.
+RankMap achieves competitive accuracy with significantly lower runtime 
+than existing methods such as SingleR, Azimuth, and RCTD.
 
 <!-- badges: start -->
 

@@ -25,8 +25,8 @@ by default. \code{NA} entries in \code{x} are preserved in the output but are
 not considered a level.
 }
 \examples{
-FactorSorted(c("a","b","a","c","b","a"))
-FactorSorted(c("a","b","a","c","b","a"), decreasing = FALSE)
-FactorSorted(factor(c("x","y","x", NA)))
+FactorSorted(c("a", "b", "a", "c", "b", "a"))
+FactorSorted(c("a", "b", "a", "c", "b", "a"), decreasing = FALSE)
+FactorSorted(factor(c("x", "y", "x", NA)))
 
 }

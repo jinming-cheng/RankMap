@@ -25,7 +25,7 @@ bibliography-style: plain
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-    eval = TRUE, 
+    eval = TRUE,
     collapse = TRUE,
     comment = "#>",
     out.width = "100%",
@@ -120,10 +120,10 @@ larger values of `k` (e.g., 100 or 200) are generally recommended.
 
 ```{r}
 pred_df <- RankMap(
-  ref_data = seu_sc,
-  ref_labels = seu_sc$cell_type,
-  new_data = seu_xen,
-  k = 20
+    ref_data = seu_sc,
+    ref_labels = seu_sc$cell_type,
+    new_data = seu_xen,
+    k = 20
 )
 ```
 
@@ -136,12 +136,13 @@ head(pred_df)
 
 ## Evaluate Performance
 
-If ground truth labels are available, you can evaluate prediction accuracy using:
+If ground truth labels are available, 
+you can evaluate prediction accuracy using:
 
 ```{r}
 perf <- EvaluatePredictionPerformance(
-  prediction_df = pred_df,
-  truth = seu_xen$cell_type_SingleR
+    prediction_df = pred_df,
+    truth = seu_xen$cell_type_SingleR
 )
 perf
 ```
@@ -164,34 +165,36 @@ Convert `Seurat` objects into `SingleCellExperiment` objects:
 library(SingleCellExperiment)
 
 sce_sc <- SingleCellExperiment(
-  assays = list(
-    counts = GetAssayData(seu_sc, layer = "counts"),
-    logcounts = GetAssayData(seu_sc, layer = "data")
-  ),
-  colData = seu_sc@meta.data
+    assays = list(
+        counts = GetAssayData(seu_sc, layer = "counts"),
+        logcounts = GetAssayData(seu_sc, layer = "data")
+    ),
+    colData = seu_sc[[]] # seu_sc@meta.data
 )
 
 sce_sp <- SingleCellExperiment(
-  assays = list(
-    counts = GetAssayData(seu_xen, layer = "counts"),
-    logcounts = GetAssayData(seu_xen, layer = "data")
-  ),
-  colData = seu_xen@meta.data
+    assays = list(
+        counts = GetAssayData(seu_xen, layer = "counts"),
+        logcounts = GetAssayData(seu_xen, layer = "data")
+    ),
+    colData = seu_xen[[]] # seu_xen@meta.data
 )
 ```
 
 ## Predict Cell Types
 
 Run cell type prediction using the `RankMap()` function. 
-Set `k = 100` as a reasonable default when the optimal number of top-ranked genes is unknown. 
-When using `SummarizedExperiment` input, the `logcounts` assay is used automatically.
+Set `k = 100` as a reasonable default when the optimal number of 
+top-ranked genes is unknown. 
+When using `SummarizedExperiment` input, the `logcounts` assay 
+is used automatically.
 
 ```{r}
 pred_df <- RankMap(
-  ref_data = sce_sc,
-  ref_labels = sce_sc$cell_type,
-  new_data = sce_sp,
-  k = 100
+    ref_data = sce_sc,
+    ref_labels = sce_sc$cell_type,
+    new_data = sce_sp,
+    k = 100
 )
 ```
 
@@ -201,8 +204,8 @@ Compare predictions with ground truth labels:
 
 ```{r}
 perf <- EvaluatePredictionPerformance(
-  prediction_df = pred_df,
-  truth = sce_sp$cell_type_SingleR
+    prediction_df = pred_df,
+    truth = sce_sp$cell_type_SingleR
 )
 perf
 ```
