@@ -19,9 +19,9 @@ than existing methods such as SingleR, Azimuth, and RCTD.
 
 <!-- badges: start -->
 
-<!-- [![R-CMD-check](https://github.com/jinming-cheng/RankMap/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/jinming-cheng/RankMap/actions) -->
+[![R-CMD-check](https://github.com/jinming-cheng/RankMap/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/jinming-cheng/RankMap/actions)
 
-<!-- [![Codecov test coverage](https://codecov.io/gh/jinming-cheng/RankMap/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/RankMap) -->
+[![Codecov test coverage](https://codecov.io/gh/jinming-cheng/RankMap/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/RankMap)
 
 <!-- badges: end -->
 
