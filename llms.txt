@@ -1,0 +1,82 @@
+# RankMap ![](reference/figures/RankMap.png)
+
+RankMap is a fast, robust, and scalable method for reference-based cell
+type annotation of single-cell and spatial transcriptomics data. It
+transforms gene expression matrices into sparse ranked representations
+and applies multinomial regression via the glmnet framework to predict
+cell types. This rank-based strategy enhances robustness to batch
+effects, platform differences, and partial gene coverage, making RankMap
+especially suitable for technologies like Xenium and MERFISH. The
+package supports flexible preprocessing, fast model training and
+prediction, and is compatible with Seurat, SingleCellExperiment, and
+SpatialExperiment objects. RankMap achieves competitive accuracy with
+significantly lower runtime than existing methods such as SingleR,
+Azimuth, and RCTD.
+
+## Installation
+
+The *RankMap* package can be installed from GitHub by using:
+
+``` r
+devtools::install_github("jinming-cheng/RankMap")
+```
+
+## Quick Start
+
+An example of predicting cell types for Xenium spatial data using a
+well-annotated single-cell dataset as reference
+
+``` r
+# load data
+seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
+    package = "RankMap"
+))
+
+seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
+    package = "RankMap"
+))
+
+# predict cell types, if unsure about k (default 20), set k to 100.
+pred_df <- RankMap(
+    ref_data = seu_sc,
+    ref_labels = seu_sc$cell_type,
+    new_data = seu_xen
+    k = 100
+)
+head(pred_df)
+```
+
+# Package index
+
+## All functions
+
+- [`ComputeRankedMatrix()`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md)
+  : Compute Ranked Gene Expression Matrix
+- [`EvaluatePredictionPerformance()`](https://github.com/jinming-cheng/RankMap/reference/EvaluatePredictionPerformance.md)
+  : Evaluate Prediction Accuracy and Confusion by Cell Type
+- [`ExtractData()`](https://github.com/jinming-cheng/RankMap/reference/ExtractData.md)
+  : Extract Expression Matrix from Seurat, SummarizedExperiment, or
+  Matrix
+- [`FactorSorted()`](https://github.com/jinming-cheng/RankMap/reference/FactorSorted.md)
+  : Order factor levels by frequency
+- [`FilterLowConfidenceCells()`](https://github.com/jinming-cheng/RankMap/reference/FilterLowConfidenceCells.md)
+  : Tag Low-Confidence Predictions and Add Status Column
+- [`MaskTopKGenes()`](https://github.com/jinming-cheng/RankMap/reference/MaskTopKGenes.md)
+  : Mask Non-Top-K Genes in Each Cell or Spot
+- [`OptimizeConfidenceThreshold()`](https://github.com/jinming-cheng/RankMap/reference/OptimizeConfidenceThreshold.md)
+  : Optimize Confidence Threshold for Cell Type Prediction
+- [`PredictRankModel()`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
+  : Predict Cell Types, Probabilities, or Confidence Scores
+- [`RankMap()`](https://github.com/jinming-cheng/RankMap/reference/RankMap.md)
+  : RankMap: Train and Predict Cell Types Using Top-Ranked Genes
+- [`SampleCellsByType()`](https://github.com/jinming-cheng/RankMap/reference/SampleCellsByType.md)
+  : Sample Cells by Cell Type with Minimum Representation
+- [`TrainRankModel()`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md)
+  : Train Multinomial Rank-Based Model
+
+# Articles
+
+### All vignettes
+
+- [Getting Started with
+  RankMap](https://github.com/jinming-cheng/RankMap/articles/RankMap.md):

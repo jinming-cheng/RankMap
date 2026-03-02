@@ -8,8 +8,8 @@
 <title>Getting Started with RankMap • RankMap</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with RankMap">
 </head>
 <body>
@@ -29,7 +29,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/RankMap.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../articles/RankMap.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
@@ -58,7 +58,7 @@ Cheng</h4>
       Centre for Biomedical Data Science, Duke-NUS Medical School,
 Singapore 169857, Singapore<br><h4 data-toc-skip class="date">02 March, 2026</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jinming-cheng/RankMap/blob/HEAD/vignettes/RankMap.Rmd"><code>vignettes/RankMap.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jinming-cheng/RankMap/blob/main/vignettes/RankMap.Rmd"><code>vignettes/RankMap.Rmd</code></a></small>
       <div class="d-none name"><code>RankMap.Rmd</code></div>
     </address>
 </div>
@@ -124,11 +124,8 @@ cells):</p>
 <span><span class="co">#&gt; Loading required package: SeuratObject</span></span>
 <span><span class="co">#&gt; Loading required package: sp</span></span>
 <span><span class="co">#&gt; 'SeuratObject' was built under R 4.4.0 but the current version is</span></span>
-<span><span class="co">#&gt; 4.4.1; it is recomended that you reinstall 'SeuratObject' as the ABI</span></span>
+<span><span class="co">#&gt; 4.4.2; it is recomended that you reinstall 'SeuratObject' as the ABI</span></span>
 <span><span class="co">#&gt; for R may have changed</span></span>
-<span><span class="co">#&gt; 'SeuratObject' was built with package 'Matrix' 1.7.0 but the current</span></span>
-<span><span class="co">#&gt; version is 1.7.1; it is recomended that you reinstall 'SeuratObject' as</span></span>
-<span><span class="co">#&gt; the ABI for 'Matrix' may have changed</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'SeuratObject'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
@@ -358,79 +355,83 @@ assay is used automatically.</p>
 </h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.4.1 (2024-06-14)</span></span>
-<span><span class="co">#&gt; Platform: aarch64-apple-darwin20</span></span>
-<span><span class="co">#&gt; Running under: macOS 15.6.1</span></span>
+<span><span class="co">#&gt; R version 4.4.2 (2024-10-31)</span></span>
+<span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 24.04.1 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
-<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib </span></span>
-<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0</span></span>
+<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
-<span><span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; time zone: Asia/Singapore</span></span>
-<span><span class="co">#&gt; tzcode source: internal</span></span>
+<span><span class="co">#&gt; time zone: UTC</span></span>
+<span><span class="co">#&gt; tzcode source: system (glibc)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attached base packages:</span></span>
 <span><span class="co">#&gt; [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span></span>
 <span><span class="co">#&gt; [8] base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt;  [1] SingleCellExperiment_1.28.0 SummarizedExperiment_1.36.0</span></span>
+<span><span class="co">#&gt;  [1] SingleCellExperiment_1.28.1 SummarizedExperiment_1.36.0</span></span>
 <span><span class="co">#&gt;  [3] Biobase_2.66.0              GenomicRanges_1.58.0       </span></span>
-<span><span class="co">#&gt;  [5] GenomeInfoDb_1.42.0         IRanges_2.40.0             </span></span>
+<span><span class="co">#&gt;  [5] GenomeInfoDb_1.42.3         IRanges_2.40.1             </span></span>
 <span><span class="co">#&gt;  [7] S4Vectors_0.44.0            BiocGenerics_0.52.0        </span></span>
-<span><span class="co">#&gt;  [9] MatrixGenerics_1.18.0       matrixStats_1.4.1          </span></span>
-<span><span class="co">#&gt; [11] SeuratObject_5.0.2          sp_2.1-4                   </span></span>
-<span><span class="co">#&gt; [13] RankMap_0.2.0               BiocStyle_2.34.0           </span></span>
+<span><span class="co">#&gt;  [9] MatrixGenerics_1.18.1       matrixStats_1.5.0          </span></span>
+<span><span class="co">#&gt; [11] SeuratObject_5.3.0          sp_2.2-1                   </span></span>
+<span><span class="co">#&gt; [13] RankMap_0.3.0               BiocStyle_2.34.0           </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;   [1] RColorBrewer_1.1-3      rstudioapi_0.17.1       jsonlite_1.8.9         </span></span>
-<span><span class="co">#&gt;   [4] shape_1.4.6.1           magrittr_2.0.3          spatstat.utils_3.1-0   </span></span>
-<span><span class="co">#&gt;   [7] farver_2.1.2            rmarkdown_2.29          zlibbioc_1.52.0        </span></span>
-<span><span class="co">#&gt;  [10] fs_1.6.5                ragg_1.3.3              vctrs_0.6.5            </span></span>
-<span><span class="co">#&gt;  [13] ROCR_1.0-11             spatstat.explore_3.3-3  S4Arrays_1.6.0         </span></span>
-<span><span class="co">#&gt;  [16] htmltools_0.5.8.1       SparseArray_1.6.0       sass_0.4.9             </span></span>
-<span><span class="co">#&gt;  [19] sctransform_0.4.1       parallelly_1.38.0       KernSmooth_2.23-24     </span></span>
-<span><span class="co">#&gt;  [22] bslib_0.8.0             htmlwidgets_1.6.4       desc_1.4.3             </span></span>
-<span><span class="co">#&gt;  [25] ica_1.0-3               plyr_1.8.9              plotly_4.10.4          </span></span>
-<span><span class="co">#&gt;  [28] zoo_1.8-12              cachem_1.1.0            igraph_2.1.1           </span></span>
-<span><span class="co">#&gt;  [31] mime_0.12               lifecycle_1.0.4         iterators_1.0.14       </span></span>
-<span><span class="co">#&gt;  [34] pkgconfig_2.0.3         Matrix_1.7-1            R6_2.5.1               </span></span>
-<span><span class="co">#&gt;  [37] fastmap_1.2.0           GenomeInfoDbData_1.2.13 fitdistrplus_1.2-1     </span></span>
-<span><span class="co">#&gt;  [40] future_1.34.0           shiny_1.9.1             digest_0.6.37          </span></span>
-<span><span class="co">#&gt;  [43] colorspace_2.1-1        patchwork_1.3.0         Seurat_5.1.0           </span></span>
-<span><span class="co">#&gt;  [46] tensor_1.5              RSpectra_0.16-2         irlba_2.3.5.1          </span></span>
-<span><span class="co">#&gt;  [49] textshaping_0.4.0       progressr_0.15.0        spatstat.sparse_3.1-0  </span></span>
-<span><span class="co">#&gt;  [52] httr_1.4.7              polyclip_1.10-7         abind_1.4-8            </span></span>
-<span><span class="co">#&gt;  [55] compiler_4.4.1          fastDummies_1.7.4       MASS_7.3-61            </span></span>
-<span><span class="co">#&gt;  [58] DelayedArray_0.32.0     tools_4.4.1             lmtest_0.9-40          </span></span>
-<span><span class="co">#&gt;  [61] httpuv_1.6.15           future.apply_1.11.3     goftest_1.2-3          </span></span>
-<span><span class="co">#&gt;  [64] glue_1.8.0              nlme_3.1-166            promises_1.3.0         </span></span>
-<span><span class="co">#&gt;  [67] grid_4.4.1              Rtsne_0.17              cluster_2.1.6          </span></span>
-<span><span class="co">#&gt;  [70] reshape2_1.4.4          generics_0.1.3          gtable_0.3.6           </span></span>
-<span><span class="co">#&gt;  [73] spatstat.data_3.1-2     tidyr_1.3.1             data.table_1.16.2      </span></span>
-<span><span class="co">#&gt;  [76] XVector_0.46.0          spatstat.geom_3.3-3     RcppAnnoy_0.0.22       </span></span>
+<span><span class="co">#&gt;   [1] RColorBrewer_1.1-3      jsonlite_2.0.0          shape_1.4.6.1          </span></span>
+<span><span class="co">#&gt;   [4] magrittr_2.0.4          spatstat.utils_3.2-1    farver_2.1.2           </span></span>
+<span><span class="co">#&gt;   [7] rmarkdown_2.30          zlibbioc_1.52.0         fs_1.6.6               </span></span>
+<span><span class="co">#&gt;  [10] ragg_1.5.0              vctrs_0.7.1             ROCR_1.0-12            </span></span>
+<span><span class="co">#&gt;  [13] spatstat.explore_3.7-0  S4Arrays_1.6.0          htmltools_0.5.9        </span></span>
+<span><span class="co">#&gt;  [16] SparseArray_1.6.2       sass_0.4.10             sctransform_0.4.3      </span></span>
+<span><span class="co">#&gt;  [19] parallelly_1.46.1       KernSmooth_2.23-26      bslib_0.10.0           </span></span>
+<span><span class="co">#&gt;  [22] htmlwidgets_1.6.4       desc_1.4.3              ica_1.0-3              </span></span>
+<span><span class="co">#&gt;  [25] plyr_1.8.9              plotly_4.12.0           zoo_1.8-15             </span></span>
+<span><span class="co">#&gt;  [28] cachem_1.1.0            igraph_2.2.2            mime_0.13              </span></span>
+<span><span class="co">#&gt;  [31] lifecycle_1.0.5         iterators_1.0.14        pkgconfig_2.0.3        </span></span>
+<span><span class="co">#&gt;  [34] Matrix_1.7-4            R6_2.6.1                fastmap_1.2.0          </span></span>
+<span><span class="co">#&gt;  [37] GenomeInfoDbData_1.2.13 fitdistrplus_1.2-6      future_1.69.0          </span></span>
+<span><span class="co">#&gt;  [40] shiny_1.13.0            digest_0.6.39           patchwork_1.3.2        </span></span>
+<span><span class="co">#&gt;  [43] Seurat_5.4.0            tensor_1.5.1            RSpectra_0.16-2        </span></span>
+<span><span class="co">#&gt;  [46] irlba_2.3.7             textshaping_1.0.4       progressr_0.18.0       </span></span>
+<span><span class="co">#&gt;  [49] spatstat.sparse_3.1-0   httr_1.4.8              polyclip_1.10-7        </span></span>
+<span><span class="co">#&gt;  [52] abind_1.4-8             compiler_4.4.2          S7_0.2.1               </span></span>
+<span><span class="co">#&gt;  [55] fastDummies_1.7.5       MASS_7.3-65             DelayedArray_0.32.0    </span></span>
+<span><span class="co">#&gt;  [58] tools_4.4.2             lmtest_0.9-40           otel_0.2.0             </span></span>
+<span><span class="co">#&gt;  [61] httpuv_1.6.16           future.apply_1.20.2     goftest_1.2-3          </span></span>
+<span><span class="co">#&gt;  [64] glue_1.8.0              nlme_3.1-168            promises_1.5.0         </span></span>
+<span><span class="co">#&gt;  [67] grid_4.4.2              Rtsne_0.17              cluster_2.1.8.2        </span></span>
+<span><span class="co">#&gt;  [70] reshape2_1.4.5          generics_0.1.4          gtable_0.3.6           </span></span>
+<span><span class="co">#&gt;  [73] spatstat.data_3.1-9     tidyr_1.3.2             data.table_1.18.2.1    </span></span>
+<span><span class="co">#&gt;  [76] XVector_0.46.0          spatstat.geom_3.7-0     RcppAnnoy_0.0.23       </span></span>
 <span><span class="co">#&gt;  [79] ggrepel_0.9.6           RANN_2.6.2              foreach_1.5.2          </span></span>
-<span><span class="co">#&gt;  [82] pillar_1.11.1           stringr_1.5.1           spam_2.11-0            </span></span>
-<span><span class="co">#&gt;  [85] RcppHNSW_0.6.0          later_1.3.2             splines_4.4.1          </span></span>
-<span><span class="co">#&gt;  [88] dplyr_1.1.4             lattice_0.22-6          survival_3.7-0         </span></span>
-<span><span class="co">#&gt;  [91] deldir_2.0-4            tidyselect_1.2.1        miniUI_0.1.1.1         </span></span>
-<span><span class="co">#&gt;  [94] pbapply_1.7-2           knitr_1.48              gridExtra_2.3          </span></span>
-<span><span class="co">#&gt;  [97] bookdown_0.42           scattermore_1.2         xfun_0.54              </span></span>
-<span><span class="co">#&gt; [100] UCSC.utils_1.2.0        stringi_1.8.4           lazyeval_0.2.2         </span></span>
-<span><span class="co">#&gt; [103] yaml_2.3.10             evaluate_1.0.1          codetools_0.2-20       </span></span>
-<span><span class="co">#&gt; [106] tibble_3.2.1            BiocManager_1.30.25     cli_3.6.5              </span></span>
-<span><span class="co">#&gt; [109] uwot_0.2.2              xtable_1.8-4            reticulate_1.43.0      </span></span>
-<span><span class="co">#&gt; [112] systemfonts_1.1.0       munsell_0.5.1           jquerylib_0.1.4        </span></span>
-<span><span class="co">#&gt; [115] Rcpp_1.1.0              globals_0.16.3          spatstat.random_3.3-2  </span></span>
-<span><span class="co">#&gt; [118] png_0.1-8               spatstat.univar_3.0-1   parallel_4.4.1         </span></span>
-<span><span class="co">#&gt; [121] pkgdown_2.1.1           ggplot2_3.5.1           dotCall64_1.2          </span></span>
-<span><span class="co">#&gt; [124] listenv_0.9.1           glmnet_4.1-8            viridisLite_0.4.2      </span></span>
-<span><span class="co">#&gt; [127] scales_1.3.0            ggridges_0.5.6          crayon_1.5.3           </span></span>
-<span><span class="co">#&gt; [130] leiden_0.4.3.1          purrr_1.0.2             rlang_1.1.6            </span></span>
-<span><span class="co">#&gt; [133] cowplot_1.1.3</span></span></code></pre></div>
+<span><span class="co">#&gt;  [82] pillar_1.11.1           stringr_1.6.0           spam_2.11-3            </span></span>
+<span><span class="co">#&gt;  [85] RcppHNSW_0.6.0          later_1.4.7             splines_4.4.2          </span></span>
+<span><span class="co">#&gt;  [88] dplyr_1.2.0             lattice_0.22-9          survival_3.8-6         </span></span>
+<span><span class="co">#&gt;  [91] deldir_2.0-4            tidyselect_1.2.1        miniUI_0.1.2           </span></span>
+<span><span class="co">#&gt;  [94] pbapply_1.7-4           knitr_1.51              gridExtra_2.3          </span></span>
+<span><span class="co">#&gt;  [97] bookdown_0.46           scattermore_1.2         xfun_0.56              </span></span>
+<span><span class="co">#&gt; [100] UCSC.utils_1.2.0        stringi_1.8.7           lazyeval_0.2.2         </span></span>
+<span><span class="co">#&gt; [103] yaml_2.3.12             evaluate_1.0.5          codetools_0.2-20       </span></span>
+<span><span class="co">#&gt; [106] tibble_3.3.1            BiocManager_1.30.27     cli_3.6.5              </span></span>
+<span><span class="co">#&gt; [109] uwot_0.2.4              xtable_1.8-8            reticulate_1.45.0      </span></span>
+<span><span class="co">#&gt; [112] systemfonts_1.3.1       jquerylib_0.1.4         Rcpp_1.1.1             </span></span>
+<span><span class="co">#&gt; [115] globals_0.19.0          spatstat.random_3.4-4   png_0.1-8              </span></span>
+<span><span class="co">#&gt; [118] spatstat.univar_3.1-6   parallel_4.4.2          pkgdown_2.2.0          </span></span>
+<span><span class="co">#&gt; [121] ggplot2_4.0.2           dotCall64_1.2           listenv_0.10.0         </span></span>
+<span><span class="co">#&gt; [124] glmnet_4.1-10           viridisLite_0.4.3       scales_1.4.0           </span></span>
+<span><span class="co">#&gt; [127] ggridges_0.5.7          crayon_1.5.3            purrr_1.2.1            </span></span>
+<span><span class="co">#&gt; [130] rlang_1.1.7             cowplot_1.2.0</span></span></code></pre></div>
 <div style="page-break-after: always;"></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -444,7 +445,7 @@ assay is used automatically.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

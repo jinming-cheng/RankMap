@@ -1,0 +1,30 @@
+# Changelog
+
+## RankMap 0.99.0
+
+*Initial submission to Bioconductor*
+
+### New Features
+
+- Fast, robust, and scalable reference-based cell type annotation using
+  multinomial regression on sparse ranked expression matrices.
+- Supports both **single-cell** and **spatial transcriptomics** data.
+- Compatible with `Seurat`, `SingleCellExperiment`, and
+  `SpatialExperiment` objects.
+- Core function
+  [`RankMap()`](https://github.com/jinming-cheng/RankMap/reference/RankMap.md)
+  provides a streamlined pipeline for preprocessing, model training, and
+  prediction.
+- Customizable preprocessing: top-K gene masking, optional binning,
+  expression weighting, and scaling.
+- Additional functions:
+  - [`ComputeRankedMatrix()`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md)
+    – generate ranked matrices
+  - [`TrainRankModel()`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md)
+    – train multinomial GLM
+  - [`PredictRankModel()`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
+    – apply trained model to query data
+  - [`EvaluatePredictionPerformance()`](https://github.com/jinming-cheng/RankMap/reference/EvaluatePredictionPerformance.md)
+    – assess accuracy
+- Optimized for large datasets with significantly faster runtime than
+  `SingleR`, `Azimuth`, and `RCTD`.
