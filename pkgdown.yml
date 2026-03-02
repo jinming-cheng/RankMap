@@ -1,0 +1,9 @@
+pandoc: 3.6.3
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  RankMap: RankMap.html
+last_built: 2026-03-02T04:51Z
+urls:
+  reference: https://github.com/jinming-cheng/RankMap/reference
+  article: https://github.com/jinming-cheng/RankMap/articles
