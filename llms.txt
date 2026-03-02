@@ -13,6 +13,9 @@ SpatialExperiment objects. RankMap achieves competitive accuracy with
 significantly lower runtime than existing methods such as SingleR,
 Azimuth, and RCTD.
 
+Quick start guide can be found
+[here](https://jinming-cheng.github.io/RankMap/index.html).
+
 ## Installation
 
 The *RankMap* package can be installed from GitHub by using:
