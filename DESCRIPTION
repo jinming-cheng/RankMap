@@ -37,7 +37,9 @@ BugReports: https://github.com/jinming-cheng/RankMap/issues
 Depends: 
     R (>= 4.4.0)
 Suggests: 
+    BiocStyle,
     knitr,
+    rmarkdown,
     SingleCellExperiment,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
