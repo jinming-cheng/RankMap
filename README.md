@@ -3,6 +3,13 @@
 
 # RankMap <img src="man/figures/RankMap.png" align="right" alt="" width="120" />
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jinming-cheng/RankMap/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/jinming-cheng/RankMap/actions)
+[![Codecov test coverage](https://codecov.io/gh/jinming-cheng/RankMap/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/RankMap)
+
+<!-- badges: end -->
+
 RankMap is a fast, robust, and scalable method for reference-based cell type 
 annotation of single-cell and spatial transcriptomics data. 
 It transforms gene expression matrices into sparse ranked representations 
@@ -17,13 +24,10 @@ Seurat, SingleCellExperiment, and SpatialExperiment objects.
 RankMap achieves competitive accuracy with significantly lower runtime 
 than existing methods such as SingleR, Azimuth, and RCTD.
 
-<!-- badges: start -->
+Quick start guide can be found 
+[here](https://jinming-cheng.github.io/RankMap/index.html).
 
-[![R-CMD-check](https://github.com/jinming-cheng/RankMap/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/jinming-cheng/RankMap/actions)
 
-[![Codecov test coverage](https://codecov.io/gh/jinming-cheng/RankMap/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/RankMap)
-
-<!-- badges: end -->
 
 ## Installation
 
