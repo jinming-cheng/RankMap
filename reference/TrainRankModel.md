@@ -7,7 +7,7 @@ the optimal regularization parameter.
 ## Usage
 
 ``` r
-TrainRankModel(
+trainRankModel(
   data = NULL,
   labels = NULL,
   alpha = 0.1,
@@ -46,7 +46,7 @@ TrainRankModel(
 - ...:
 
   Additional arguments passed to
-  [`ComputeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md).
+  [`computeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md).
 
 ## Value
 
@@ -54,8 +54,8 @@ A fitted `glmnet` or `cv.glmnet` model object.
 
 ## See also
 
-[`ComputeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md),
-[`PredictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
+[`computeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md),
+[`predictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
 
 ## Examples
 
@@ -66,14 +66,14 @@ seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
 ))
 
 # Extract normalized expression data
-mat <- ExtractData(seu_sc)
+mat <- extractData(seu_sc)
 
 # Train a model
 set.seed(42)
-model <- TrainRankModel(mat, seu_sc$cell_type)
+model <- trainRankModel(mat, seu_sc$cell_type)
 
 # Train a model with cross-validation
-model <- TrainRankModel(
+model <- trainRankModel(
     data = mat,
     labels = seu_sc$cell_type,
     cv = TRUE,

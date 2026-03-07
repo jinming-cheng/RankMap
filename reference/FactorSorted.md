@@ -6,7 +6,7 @@ their frequency of occurrence (most to least frequent by default).
 ## Usage
 
 ``` r
-FactorSorted(x, decreasing = TRUE)
+factorSorted(x, decreasing = TRUE)
 ```
 
 ## Arguments
@@ -33,13 +33,13 @@ considered a level.
 ## Examples
 
 ``` r
-FactorSorted(c("a", "b", "a", "c", "b", "a"))
+factorSorted(c("a", "b", "a", "c", "b", "a"))
 #> [1] a b a c b a
 #> Levels: a b c
-FactorSorted(c("a", "b", "a", "c", "b", "a"), decreasing = FALSE)
+factorSorted(c("a", "b", "a", "c", "b", "a"), decreasing = FALSE)
 #> [1] a b a c b a
 #> Levels: c b a
-FactorSorted(factor(c("x", "y", "x", NA)))
+factorSorted(factor(c("x", "y", "x", NA)))
 #> [1] x    y    x    <NA>
 #> Levels: x y
 ```

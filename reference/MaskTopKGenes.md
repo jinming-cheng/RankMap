@@ -7,7 +7,7 @@ sparse inputs.
 ## Usage
 
 ``` r
-MaskTopKGenes(data, k = 20)
+maskTopKGenes(data, k = 20)
 ```
 
 ## Arguments
@@ -32,5 +32,5 @@ top-k values retained per column.
 
 ``` r
 mat <- matrix(runif(1000), nrow = 100)
-masked <- MaskTopKGenes(mat, k = 10)
+masked <- maskTopKGenes(mat, k = 10)
 ```

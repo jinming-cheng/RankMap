@@ -7,7 +7,7 @@ Replaces low-confidence cell type predictions with a placeholder label
 ## Usage
 
 ``` r
-FilterLowConfidenceCells(
+filterLowConfidenceCells(
   prediction_df,
   threshold = 0.5,
   low_conf_label = "unknown",
@@ -20,7 +20,7 @@ FilterLowConfidenceCells(
 - prediction_df:
 
   A data frame from
-  [`PredictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)` (return_confidence = TRUE)`.
+  [`predictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)` (return_confidence = TRUE)`.
 
 - threshold:
 
@@ -53,7 +53,7 @@ pred_df <- data.frame(
 )
 
 # Apply threshold of 0.5 to flag low-confidence cells
-result <- FilterLowConfidenceCells(pred_df, threshold = 0.5)
+result <- filterLowConfidenceCells(pred_df, threshold = 0.5)
 
 # Show result
 print(result)
@@ -66,7 +66,7 @@ print(result)
 
 # Remove confidence column and use custom label
 # for low-confidence predictions
-result2 <- FilterLowConfidenceCells(pred_df,
+result2 <- filterLowConfidenceCells(pred_df,
     threshold = 0.6,
     low_conf_label = "low_conf",
     keep_confidence = FALSE

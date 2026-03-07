@@ -7,7 +7,7 @@ number of cells.
 ## Usage
 
 ``` r
-SampleCellsByType(cell_metadata, n_total_cells = 5000, min_per_type = 50)
+sampleCellsByType(cell_metadata, n_total_cells = 5000, min_per_type = 50)
 ```
 
 ## Arguments
@@ -39,7 +39,7 @@ meta <- data.frame(
     cell_type = sample(c("T", "B", "Mac"), 10000, replace = TRUE)
 )
 set.seed(42)
-sampled <- SampleCellsByType(meta,
+sampled <- sampleCellsByType(meta,
     n_total_cells = 1000,
     min_per_type = 50
 )

@@ -7,7 +7,7 @@ expression weighting.
 ## Usage
 
 ``` r
-ComputeRankedMatrix(
+computeRankedMatrix(
   data,
   weight_by_expr = TRUE,
   rank_zeros = FALSE,
@@ -70,14 +70,14 @@ expression models.
 
 ## See also
 
-[`MaskTopKGenes`](https://github.com/jinming-cheng/RankMap/reference/MaskTopKGenes.md),
-[`TrainRankModel`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md),
-[`PredictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
+[`maskTopKGenes`](https://github.com/jinming-cheng/RankMap/reference/MaskTopKGenes.md),
+[`trainRankModel`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md),
+[`predictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
 
 ## Examples
 
 ``` r
 mat <- matrix(runif(1000), nrow = 100)
-ranked <- ComputeRankedMatrix(mat, k = 10)
-raw_expr <- ComputeRankedMatrix(mat, use_data = TRUE)
+ranked <- computeRankedMatrix(mat, k = 10)
+raw_expr <- computeRankedMatrix(mat, use_data = TRUE)
 ```

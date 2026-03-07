@@ -6,7 +6,7 @@ given predicted vs. true labels.
 ## Usage
 
 ``` r
-EvaluatePredictionPerformance(
+evaluatePredictionPerformance(
   prediction_df = NULL,
   truth = NULL,
   low_conf_label = "unknown"
@@ -18,7 +18,7 @@ EvaluatePredictionPerformance(
 - prediction_df:
 
   Output from
-  [`PredictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)` (return_confidence = TRUE)`
+  [`predictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)` (return_confidence = TRUE)`
   or filtered version.
 
 - truth:
@@ -77,7 +77,7 @@ prediction_df <- RankMap(
     new_data = seu_xen
 )
 
-performance <- EvaluatePredictionPerformance(
+performance <- evaluatePredictionPerformance(
     prediction_df = prediction_df,
     truth = seu_xen$cell_type_SingleR
 )

@@ -7,7 +7,7 @@ frame with predicted cell types and confidence scores.
 ## Usage
 
 ``` r
-PredictRankModel(
+predictRankModel(
   model,
   new_data,
   lambda = NULL,
@@ -22,7 +22,7 @@ PredictRankModel(
 - model:
 
   A fitted model from
-  [`TrainRankModel`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md).
+  [`trainRankModel`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md).
 
 - new_data:
 
@@ -47,7 +47,7 @@ PredictRankModel(
 - ...:
 
   Additional arguments passed to
-  [`ComputeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md).
+  [`computeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md).
 
 ## Value
 
@@ -69,15 +69,15 @@ seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
 
 # Extract normalized expression data
 common_genes <- intersect(rownames(seu_sc), rownames(seu_xen))
-mat <- ExtractData(seu_sc)[common_genes, ]
-new_mat <- ExtractData(seu_xen)[common_genes, ]
+mat <- extractData(seu_sc)[common_genes, ]
+new_mat <- extractData(seu_xen)[common_genes, ]
 
 # Train a model
 set.seed(42)
-model <- TrainRankModel(mat, seu_sc$cell_type)
+model <- trainRankModel(mat, seu_sc$cell_type)
 
 # Predict cell type
-pred <- PredictRankModel(model, new_mat)
+pred <- predictRankModel(model, new_mat)
 
 table(predict = pred, truth = seu_xen$cell_type_SingleR)
 #>        truth

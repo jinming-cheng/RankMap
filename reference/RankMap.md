@@ -95,7 +95,7 @@ RankMap(
 - ...:
 
   Additional arguments passed to
-  [`ComputeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md).
+  [`computeRankedMatrix`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md).
 
 ## Value
 

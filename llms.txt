@@ -49,32 +49,56 @@ pred_df <- RankMap(
 head(pred_df)
 ```
 
+## Citation
+
+Please cite this article if you use RankMap:
+
+``` R
+To cite RankMap in publications, please use:
+
+  Cheng J, Li S, Kim S, Ang C, Chew S, Chow P, Liu N (2026). "RankMap:
+  Rank-based reference mapping for fast and robust cell type annotation
+  in spatial and single-cell transcriptomics." _bioRxiv_.
+  doi:10.64898/2026.03.01.708931
+  <https://doi.org/10.64898/2026.03.01.708931>.
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    title = {RankMap: Rank-based reference mapping for fast and robust cell type annotation in spatial and single-cell transcriptomics},
+    author = {Jinming Cheng and Shengdi Li and Serim Kim and Chow Hiang Ang and Sin Chi Chew and Pierce Kah Hoe Chow and Nan Liu},
+    journal = {bioRxiv},
+    year = {2026},
+    doi = {10.64898/2026.03.01.708931},
+  }
+```
+
 # Package index
 
 ## All functions
 
-- [`ComputeRankedMatrix()`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md)
+- [`computeRankedMatrix()`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md)
   : Compute Ranked Gene Expression Matrix
-- [`EvaluatePredictionPerformance()`](https://github.com/jinming-cheng/RankMap/reference/EvaluatePredictionPerformance.md)
+- [`evaluatePredictionPerformance()`](https://github.com/jinming-cheng/RankMap/reference/EvaluatePredictionPerformance.md)
   : Evaluate Prediction Accuracy and Confusion by Cell Type
-- [`ExtractData()`](https://github.com/jinming-cheng/RankMap/reference/ExtractData.md)
+- [`extractData()`](https://github.com/jinming-cheng/RankMap/reference/ExtractData.md)
   : Extract Expression Matrix from Seurat, SummarizedExperiment, or
   Matrix
-- [`FactorSorted()`](https://github.com/jinming-cheng/RankMap/reference/FactorSorted.md)
+- [`factorSorted()`](https://github.com/jinming-cheng/RankMap/reference/FactorSorted.md)
   : Order factor levels by frequency
-- [`FilterLowConfidenceCells()`](https://github.com/jinming-cheng/RankMap/reference/FilterLowConfidenceCells.md)
+- [`filterLowConfidenceCells()`](https://github.com/jinming-cheng/RankMap/reference/FilterLowConfidenceCells.md)
   : Tag Low-Confidence Predictions and Add Status Column
-- [`MaskTopKGenes()`](https://github.com/jinming-cheng/RankMap/reference/MaskTopKGenes.md)
+- [`maskTopKGenes()`](https://github.com/jinming-cheng/RankMap/reference/MaskTopKGenes.md)
   : Mask Non-Top-K Genes in Each Cell or Spot
-- [`OptimizeConfidenceThreshold()`](https://github.com/jinming-cheng/RankMap/reference/OptimizeConfidenceThreshold.md)
+- [`optimizeConfidenceThreshold()`](https://github.com/jinming-cheng/RankMap/reference/OptimizeConfidenceThreshold.md)
   : Optimize Confidence Threshold for Cell Type Prediction
-- [`PredictRankModel()`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
+- [`predictRankModel()`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
   : Predict Cell Types, Probabilities, or Confidence Scores
 - [`RankMap()`](https://github.com/jinming-cheng/RankMap/reference/RankMap.md)
   : RankMap: Train and Predict Cell Types Using Top-Ranked Genes
-- [`SampleCellsByType()`](https://github.com/jinming-cheng/RankMap/reference/SampleCellsByType.md)
+- [`sampleCellsByType()`](https://github.com/jinming-cheng/RankMap/reference/SampleCellsByType.md)
   : Sample Cells by Cell Type with Minimum Representation
-- [`TrainRankModel()`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md)
+- [`trainRankModel()`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md)
   : Train Multinomial Rank-Based Model
 
 # Articles

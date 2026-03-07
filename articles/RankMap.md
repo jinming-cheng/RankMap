@@ -114,7 +114,7 @@ If ground truth labels are available, you can evaluate prediction
 accuracy using:
 
 ``` r
-perf <- EvaluatePredictionPerformance(
+perf <- evaluatePredictionPerformance(
     prediction_df = pred_df,
     truth = seu_xen$cell_type_SingleR
 )
@@ -258,7 +258,7 @@ pred_df <- RankMap(
 Compare predictions with ground truth labels:
 
 ``` r
-perf <- EvaluatePredictionPerformance(
+perf <- evaluatePredictionPerformance(
     prediction_df = pred_df,
     truth = sce_sp$cell_type_SingleR
 )
@@ -312,13 +312,13 @@ sessionInfo()
 #>  [7] S4Vectors_0.44.0            BiocGenerics_0.52.0        
 #>  [9] MatrixGenerics_1.18.1       matrixStats_1.5.0          
 #> [11] SeuratObject_5.3.0          sp_2.2-1                   
-#> [13] RankMap_0.3.0               BiocStyle_2.34.0           
+#> [13] RankMap_0.4.1               BiocStyle_2.34.0           
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] RColorBrewer_1.1-3      jsonlite_2.0.0          shape_1.4.6.1          
 #>   [4] magrittr_2.0.4          spatstat.utils_3.2-1    farver_2.1.2           
-#>   [7] rmarkdown_2.30          zlibbioc_1.52.0         fs_1.6.6               
-#>  [10] ragg_1.5.0              vctrs_0.7.1             ROCR_1.0-12            
+#>   [7] rmarkdown_2.30          zlibbioc_1.52.0         fs_1.6.7               
+#>  [10] ragg_1.5.1              vctrs_0.7.1             ROCR_1.0-12            
 #>  [13] spatstat.explore_3.7-0  S4Arrays_1.6.0          htmltools_0.5.9        
 #>  [16] SparseArray_1.6.2       sass_0.4.10             sctransform_0.4.3      
 #>  [19] parallelly_1.46.1       KernSmooth_2.23-26      bslib_0.10.0           
@@ -330,7 +330,7 @@ sessionInfo()
 #>  [37] GenomeInfoDbData_1.2.13 fitdistrplus_1.2-6      future_1.69.0          
 #>  [40] shiny_1.13.0            digest_0.6.39           patchwork_1.3.2        
 #>  [43] Seurat_5.4.0            tensor_1.5.1            RSpectra_0.16-2        
-#>  [46] irlba_2.3.7             textshaping_1.0.4       progressr_0.18.0       
+#>  [46] irlba_2.3.7             textshaping_1.0.5       progressr_0.18.0       
 #>  [49] spatstat.sparse_3.1-0   httr_1.4.8              polyclip_1.10-7        
 #>  [52] abind_1.4-8             compiler_4.4.2          S7_0.2.1               
 #>  [55] fastDummies_1.7.5       MASS_7.3-65             DelayedArray_0.32.0    
@@ -343,7 +343,7 @@ sessionInfo()
 #>  [76] XVector_0.46.0          spatstat.geom_3.7-0     RcppAnnoy_0.0.23       
 #>  [79] ggrepel_0.9.6           RANN_2.6.2              foreach_1.5.2          
 #>  [82] pillar_1.11.1           stringr_1.6.0           spam_2.11-3            
-#>  [85] RcppHNSW_0.6.0          later_1.4.7             splines_4.4.2          
+#>  [85] RcppHNSW_0.6.0          later_1.4.8             splines_4.4.2          
 #>  [88] dplyr_1.2.0             lattice_0.22-9          survival_3.8-6         
 #>  [91] deldir_2.0-4            tidyselect_1.2.1        miniUI_0.1.2           
 #>  [94] pbapply_1.7-4           knitr_1.51              gridExtra_2.3          
@@ -352,7 +352,7 @@ sessionInfo()
 #> [103] yaml_2.3.12             evaluate_1.0.5          codetools_0.2-20       
 #> [106] tibble_3.3.1            BiocManager_1.30.27     cli_3.6.5              
 #> [109] uwot_0.2.4              xtable_1.8-8            reticulate_1.45.0      
-#> [112] systemfonts_1.3.1       jquerylib_0.1.4         Rcpp_1.1.1             
+#> [112] systemfonts_1.3.2       jquerylib_0.1.4         Rcpp_1.1.1             
 #> [115] globals_0.19.0          spatstat.random_3.4-4   png_0.1-8              
 #> [118] spatstat.univar_3.1-6   parallel_4.4.2          pkgdown_2.2.0          
 #> [121] ggplot2_4.0.2           dotCall64_1.2           listenv_0.10.0         

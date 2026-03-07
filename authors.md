@@ -8,16 +8,17 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/jinming-cheng/RankMap/blob/main/DESCRIPTION)
+[`inst/CITATION`](https://github.com/jinming-cheng/RankMap/blob/main/inst/CITATION)
 
-Cheng J (2026). *RankMap: Rank-based reference mapping for fast and
-robust cell type annotation in spatial and single-cell transcriptomics*.
-R package version 0.3.0, <https://github.com/jinming-cheng/RankMap>.
+Cheng J, Li S, Kim S, Ang C, Chew S, Chow P, Liu N (2026). “RankMap:
+Rank-based reference mapping for fast and robust cell type annotation in
+spatial and single-cell transcriptomics.” *bioRxiv*.
+[doi:10.64898/2026.03.01.708931](https://doi.org/10.64898/2026.03.01.708931).
 
-    @Manual{,
+    @Article{,
       title = {RankMap: Rank-based reference mapping for fast and robust cell type annotation in spatial and single-cell transcriptomics},
-      author = {Jinming Cheng},
+      author = {Jinming Cheng and Shengdi Li and Serim Kim and Chow Hiang Ang and Sin Chi Chew and Pierce Kah Hoe Chow and Nan Liu},
+      journal = {bioRxiv},
       year = {2026},
-      note = {R package version 0.3.0},
-      url = {https://github.com/jinming-cheng/RankMap},
+      doi = {10.64898/2026.03.01.708931},
     }

@@ -18,13 +18,9 @@
 - Customizable preprocessing: top-K gene masking, optional binning,
   expression weighting, and scaling.
 - Additional functions:
-  - [`ComputeRankedMatrix()`](https://github.com/jinming-cheng/RankMap/reference/ComputeRankedMatrix.md)
-    – generate ranked matrices
-  - [`TrainRankModel()`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md)
-    – train multinomial GLM
-  - [`PredictRankModel()`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)
-    – apply trained model to query data
-  - [`EvaluatePredictionPerformance()`](https://github.com/jinming-cheng/RankMap/reference/EvaluatePredictionPerformance.md)
-    – assess accuracy
+  - `ComputeRankedMatrix()` – generate ranked matrices
+  - `TrainRankModel()` – train multinomial GLM
+  - `PredictRankModel()` – apply trained model to query data
+  - `EvaluatePredictionPerformance()` – assess accuracy
 - Optimized for large datasets with significantly faster runtime than
   `SingleR`, `Azimuth`, and `RCTD`.

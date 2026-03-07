@@ -6,7 +6,7 @@ and retention rate. Requires ground truth labels for comparison.
 ## Usage
 
 ``` r
-OptimizeConfidenceThreshold(
+optimizeConfidenceThreshold(
   prediction_df,
   truth,
   thresholds = seq(0.1, 0.9, by = 0.05),
@@ -19,7 +19,7 @@ OptimizeConfidenceThreshold(
 - prediction_df:
 
   A data frame from
-  [`PredictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)` (return_confidence = TRUE)`.
+  [`predictRankModel`](https://github.com/jinming-cheng/RankMap/reference/PredictRankModel.md)` (return_confidence = TRUE)`.
 
 - truth:
 
@@ -61,7 +61,7 @@ pred_df <- data.frame(
 truth <- c("A", "B", "A", "B", "B", "B", "A", "A", "B", "B")
 
 # Evaluate how accuracy and coverage change with threshold
-summary_df <- OptimizeConfidenceThreshold(pred_df, truth, plot = TRUE)
+summary_df <- optimizeConfidenceThreshold(pred_df, truth, plot = TRUE)
 
 
 # View result

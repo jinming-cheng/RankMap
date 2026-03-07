@@ -8,7 +8,7 @@ sparse matrix.
 ## Usage
 
 ``` r
-ExtractData(data)
+extractData(data)
 ```
 
 ## Arguments
@@ -31,5 +31,5 @@ seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
 ))
 
 # From Seurat object:
-mat <- ExtractData(seu_sc)
+mat <- extractData(seu_sc)
 ```
