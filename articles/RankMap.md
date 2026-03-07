@@ -312,7 +312,7 @@ sessionInfo()
 #>  [7] S4Vectors_0.44.0            BiocGenerics_0.52.0        
 #>  [9] MatrixGenerics_1.18.1       matrixStats_1.5.0          
 #> [11] SeuratObject_5.3.0          sp_2.2-1                   
-#> [13] RankMap_0.4.1               BiocStyle_2.34.0           
+#> [13] RankMap_0.99.0              BiocStyle_2.34.0           
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] RColorBrewer_1.1-3      jsonlite_2.0.0          shape_1.4.6.1          

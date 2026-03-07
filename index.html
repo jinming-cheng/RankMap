@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">RankMap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>RankMap is a fast, robust, and scalable method for reference-based cell type annotation of single-cell and spatial transcriptomics data. It transforms gene expression matrices into sparse ranked representations and applies multinomial regression via the glmnet framework to predict cell types. This rank-based strategy enhances robustness to batch effects, platform differences, and partial gene coverage, making RankMap especially suitable for technologies like Xenium and MERFISH. The package supports flexible preprocessing, fast model training and prediction, and is compatible with Seurat, SingleCellExperiment, and SpatialExperiment objects. RankMap achieves competitive accuracy with significantly lower runtime than existing methods such as SingleR, Azimuth, and RCTD.</p>
+<p>RankMap is a fast, robust, and scalable method for reference-based cell type annotation of single-cell and spatial transcriptomics data. It transforms gene expression matrices into ranked representations based on the top-k expressed genes per cell and applies multinomial regression via the glmnet framework to predict cell types. This rank-based strategy improves robustness to batch effects, platform differences, and partial gene coverage, making RankMap particularly suitable for technologies such as Xenium and MERFISH. The package supports flexible preprocessing, fast model training and prediction, and is compatible with Seurat, SingleCellExperiment, and SpatialExperiment objects. RankMap achieves competitive accuracy with significantly lower runtime than existing methods such as SingleR, Azimuth, and RCTD.</p>
 <p>Quick start guide can be found <a href="https://jinming-cheng.github.io/RankMap/index.html" class="external-link">here</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -65,24 +65,27 @@
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>An example of predicting cell types for Xenium spatial data using a well-annotated single-cell dataset as reference</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>seu_sc <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"seu_sc.rds"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">"RankMap"</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>))</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>seu_xen <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"seu_xen.rds"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">"RankMap"</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>))</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># predict cell types, if unsure about k (default 20), set k to 100.</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">RankMap</span>(</span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">ref_data =</span> seu_sc,</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    <span class="at">ref_labels =</span> seu_sc<span class="sc">$</span>cell_type,</span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="at">new_data =</span> seu_xen</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">100</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>)</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="fu">head</span>(pred_df)</span></code></pre></div>
+<p>Example: predicting cell types for Xenium spatial data using a well-annotated single-cell reference dataset with RankMap.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<span><span class="va">seu_sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seu_sc.rds"</span>,</span>
+<span>    package <span class="op">=</span> <span class="st">"RankMap"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">seu_xen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seu_xen.rds"</span>,</span>
+<span>    package <span class="op">=</span> <span class="st">"RankMap"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># predict cell types</span></span>
+<span><span class="co"># if unsure about k (default 20), using k = 100 is a reasonable general choice</span></span>
+<span><span class="va">pred_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/RankMap.html">RankMap</a></span><span class="op">(</span></span>
+<span>    ref_data <span class="op">=</span> <span class="va">seu_sc</span>,</span>
+<span>    ref_labels <span class="op">=</span> <span class="va">seu_sc</span><span class="op">$</span><span class="va">cell_type</span>,</span>
+<span>    new_data <span class="op">=</span> <span class="va">seu_xen</span>,</span>
+<span>    k <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred_df</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
