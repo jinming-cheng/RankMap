@@ -17,11 +17,11 @@
 #'           \code{cv.glmnet}. Default is \code{FALSE}.
 #' @param nfolds Number of folds for cross-validation
 #'               (only used if \code{cv = TRUE}). Default is \code{5}.
-#' @param ... Additional arguments passed to \code{\link{ComputeRankedMatrix}}.
+#' @param ... Additional arguments passed to \code{\link{computeRankedMatrix}}.
 #'
 #' @return A fitted \code{glmnet} or \code{cv.glmnet} model object.
 #'
-#' @seealso \code{\link{ComputeRankedMatrix}}, \code{\link{PredictRankModel}}
+#' @seealso \code{\link{computeRankedMatrix}}, \code{\link{predictRankModel}}
 #'
 #' @examples
 #' # Read in single-cell reference data
@@ -30,14 +30,14 @@
 #' ))
 #'
 #' # Extract normalized expression data
-#' mat <- ExtractData(seu_sc)
+#' mat <- extractData(seu_sc)
 #'
 #' # Train a model
 #' set.seed(42)
-#' model <- TrainRankModel(mat, seu_sc$cell_type)
+#' model <- trainRankModel(mat, seu_sc$cell_type)
 #'
 #' # Train a model with cross-validation
-#' model <- TrainRankModel(
+#' model <- trainRankModel(
 #'     data = mat,
 #'     labels = seu_sc$cell_type,
 #'     cv = TRUE,
@@ -45,17 +45,17 @@
 #' )
 #'
 #' @export
-TrainRankModel <- function(
+trainRankModel <- function(
     data = NULL,
     labels = NULL,
     alpha = 0.1,
     cv = FALSE,
     nfolds = 5,
     ...) {
-    data <- ExtractData(data)
+    data <- extractData(data)
 
     # Compute ranked expression
-    rank_expr <- ComputeRankedMatrix(data, ...)
+    rank_expr <- computeRankedMatrix(data, ...)
 
     # Transpose to cells (rows) × genes (columns)
     if (inherits(rank_expr, "dgCMatrix")) {
@@ -95,7 +95,7 @@ TrainRankModel <- function(
 #' and confidence scores.
 #'
 #' @importFrom stats predict
-#' @param model A fitted model from \code{\link{TrainRankModel}}.
+#' @param model A fitted model from \code{\link{trainRankModel}}.
 #' @param new_data A gene expression matrix with genes as rows and cells
 #'                 (or spatial spots) as columns.
 #'                 Can be a \code{Seurat} object,
@@ -108,7 +108,7 @@ TrainRankModel <- function(
 #' @param return_confidence Logical. If \code{TRUE}, returns a data frame
 #'                          with predicted labels and confidence scores.
 #' @param ... Additional arguments passed to
-#'            \code{\link{ComputeRankedMatrix}}.
+#'            \code{\link{computeRankedMatrix}}.
 #'
 #' @return A character vector (default),
 #'         a matrix (if \code{return_probs = TRUE}),
@@ -127,27 +127,27 @@ TrainRankModel <- function(
 #'
 #' # Extract normalized expression data
 #' common_genes <- intersect(rownames(seu_sc), rownames(seu_xen))
-#' mat <- ExtractData(seu_sc)[common_genes, ]
-#' new_mat <- ExtractData(seu_xen)[common_genes, ]
+#' mat <- extractData(seu_sc)[common_genes, ]
+#' new_mat <- extractData(seu_xen)[common_genes, ]
 #'
 #' # Train a model
 #' set.seed(42)
-#' model <- TrainRankModel(mat, seu_sc$cell_type)
+#' model <- trainRankModel(mat, seu_sc$cell_type)
 #'
 #' # Predict cell type
-#' pred <- PredictRankModel(model, new_mat)
+#' pred <- predictRankModel(model, new_mat)
 #'
 #' table(predict = pred, truth = seu_xen$cell_type_SingleR)
 #'
 #' @export
-PredictRankModel <- function(
+predictRankModel <- function(
     model,
     new_data,
     lambda = NULL,
     return_probs = FALSE,
     return_confidence = FALSE,
     ...) {
-    new_data <- ExtractData(new_data)
+    new_data <- extractData(new_data)
 
     msg <- paste0(
         "Choose either return_probs = TRUE or ",
@@ -157,7 +157,7 @@ PredictRankModel <- function(
         stop(msg)
     }
 
-    rank_expr <- ComputeRankedMatrix(new_data, ...)
+    rank_expr <- computeRankedMatrix(new_data, ...)
 
     if (inherits(rank_expr, "dgCMatrix")) {
         rank_expr <- Matrix::t(rank_expr)
@@ -255,7 +255,7 @@ PredictRankModel <- function(
 #'                     both predictions and the trained model.
 #'                     Default is \code{FALSE}.
 #' @param ... Additional arguments passed to
-#'            \code{\link{ComputeRankedMatrix}}.
+#'            \code{\link{computeRankedMatrix}}.
 #'
 #' @return A data frame of predictions (by default),
 #'         or a list with elements \code{predictions} and
@@ -297,8 +297,8 @@ RankMap <- function(
     return_model = FALSE,
     ...) {
     # Extract matrices
-    ref_mat <- ExtractData(ref_data)
-    test_mat <- ExtractData(new_data)
+    ref_mat <- extractData(ref_data)
+    test_mat <- extractData(new_data)
 
     # Find common genes
     common_genes <- intersect(rownames(ref_mat), rownames(test_mat))
@@ -325,7 +325,7 @@ RankMap <- function(
     test_mat <- test_mat[common_genes, , drop = FALSE]
 
     # Train model
-    model <- TrainRankModel(
+    model <- trainRankModel(
         data = ref_mat,
         labels = ref_labels,
         k = k,
@@ -336,7 +336,7 @@ RankMap <- function(
     )
 
     # Predict
-    pred_df <- PredictRankModel(
+    pred_df <- predictRankModel(
         model = model,
         new_data = test_mat,
         return_confidence = return_confidence,
@@ -348,7 +348,7 @@ RankMap <- function(
 
     # Apply confidence threshold
     if (return_confidence && !is.null(threshold)) {
-        pred_df <- FilterLowConfidenceCells(pred_df, threshold = threshold)
+        pred_df <- filterLowConfidenceCells(pred_df, threshold = threshold)
     }
 
     if (return_model) {

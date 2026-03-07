@@ -1,14 +1,14 @@
-test_that("Test TrainRankModel", {
+test_that("Test trainRankModel", {
     seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
         package = "RankMap"
     ))
 
-    mat <- ExtractData(seu_sc)
+    mat <- extractData(seu_sc)
 
-    model <- TrainRankModel(mat, seu_sc$cell_type)
+    model <- trainRankModel(mat, seu_sc$cell_type)
     expect_true(inherits(model, "glmnet"))
 
-    model <- TrainRankModel(
+    model <- trainRankModel(
         data = mat,
         labels = seu_sc$cell_type,
         cv = TRUE,
@@ -18,7 +18,7 @@ test_that("Test TrainRankModel", {
 })
 
 
-test_that("Test PredictRankModel", {
+test_that("Test predictRankModel", {
     seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
         package = "RankMap"
     ))
@@ -28,35 +28,35 @@ test_that("Test PredictRankModel", {
     ))
 
     common_genes <- intersect(rownames(seu_sc), rownames(seu_xen))
-    mat <- ExtractData(seu_sc)[common_genes, ]
-    new_mat <- ExtractData(seu_xen)[common_genes, ]
+    mat <- extractData(seu_sc)[common_genes, ]
+    new_mat <- extractData(seu_xen)[common_genes, ]
 
-    model <- TrainRankModel(mat, seu_sc$cell_type)
+    model <- trainRankModel(mat, seu_sc$cell_type)
 
-    pred <- PredictRankModel(model, new_mat)
+    pred <- predictRankModel(model, new_mat)
 
     expect_true(is.character(pred))
 
-    pred <- PredictRankModel(model, new_mat, return_confidence = TRUE)
+    pred <- predictRankModel(model, new_mat, return_confidence = TRUE)
 
     expect_true(is.data.frame(pred))
 
-    pred <- PredictRankModel(model, new_mat, return_probs = TRUE)
+    pred <- predictRankModel(model, new_mat, return_probs = TRUE)
 
     expect_true(is.matrix(pred))
 
-    expect_error(PredictRankModel(model, new_mat,
+    expect_error(predictRankModel(model, new_mat,
         return_confidence = TRUE,
         return_probs = TRUE
     ))
 
-    model <- TrainRankModel(
+    model <- trainRankModel(
         data = mat,
         labels = seu_sc$cell_type,
         cv = TRUE,
         nfolds = 3
     )
-    pred <- PredictRankModel(model, new_mat)
+    pred <- predictRankModel(model, new_mat)
     expect_true(is.character(pred))
 })
 

@@ -1,4 +1,4 @@
-test_that("Test OptimizeConfidenceThreshold and FilterLowConfidenceCells", {
+test_that("Test optimizeConfidenceThreshold and filterLowConfidenceCells", {
     seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
         package = "RankMap"
     ))
@@ -14,24 +14,24 @@ test_that("Test OptimizeConfidenceThreshold and FilterLowConfidenceCells", {
     )
 
     truth <- seu_xen$cell_type_SingleR
-    summary_df <- OptimizeConfidenceThreshold(pred_df, truth, plot = FALSE)
+    summary_df <- optimizeConfidenceThreshold(pred_df, truth, plot = FALSE)
 
     expect_true(is.data.frame(summary_df))
 
-    expect_silent(OptimizeConfidenceThreshold(pred_df, truth, plot = TRUE))
+    expect_silent(optimizeConfidenceThreshold(pred_df, truth, plot = TRUE))
 
-    expect_error(OptimizeConfidenceThreshold(pred_df, truth[1:3], plot = FALSE))
+    expect_error(optimizeConfidenceThreshold(pred_df, truth[1:3], plot = FALSE))
 
-    expect_error(OptimizeConfidenceThreshold(
+    expect_error(optimizeConfidenceThreshold(
         pred_df[, 1, drop = FALSE],
         truth[1:3],
         plot = FALSE
     ))
 
 
-    result <- FilterLowConfidenceCells(pred_df)
+    result <- filterLowConfidenceCells(pred_df)
 
     expect_true(is.data.frame(result))
 
-    expect_error(FilterLowConfidenceCells(pred_df[, 1, drop = FALSE]))
+    expect_error(filterLowConfidenceCells(pred_df[, 1, drop = FALSE]))
 })

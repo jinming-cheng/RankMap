@@ -23,13 +23,13 @@
 #'     cell_type = sample(c("T", "B", "Mac"), 10000, replace = TRUE)
 #' )
 #' set.seed(42)
-#' sampled <- SampleCellsByType(meta,
+#' sampled <- sampleCellsByType(meta,
 #'     n_total_cells = 1000,
 #'     min_per_type = 50
 #' )
 #'
 #' @export
-SampleCellsByType <- function(
+sampleCellsByType <- function(
     cell_metadata,
     n_total_cells = 5000,
     min_per_type = 50) {

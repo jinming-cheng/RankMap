@@ -17,10 +17,10 @@
 #' ))
 #'
 #' # From Seurat object:
-#' mat <- ExtractData(seu_sc)
+#' mat <- extractData(seu_sc)
 #'
 #' @export
-ExtractData <- function(data) {
+extractData <- function(data) {
     if (!inherits(data, c(
         "Seurat", "SummarizedExperiment",
         "matrix", "dgCMatrix"
@@ -61,10 +61,10 @@ ExtractData <- function(data) {
 #'         with only the top-k values retained per column.
 #' @examples
 #' mat <- matrix(runif(1000), nrow = 100)
-#' masked <- MaskTopKGenes(mat, k = 10)
+#' masked <- maskTopKGenes(mat, k = 10)
 #'
 #' @export
-MaskTopKGenes <- function(data, k = 20) {
+maskTopKGenes <- function(data, k = 20) {
     if (!inherits(data, c("matrix", "dgCMatrix"))) {
         stop("Input 'data' must be a matrix or dgCMatrix.")
     }
@@ -122,17 +122,17 @@ MaskTopKGenes <- function(data, k = 20) {
 #'         (or the original expression matrix if \code{use_data = TRUE}).
 #'         Output is always returned as a dense \code{matrix}.
 #'
-#' @seealso \code{\link{MaskTopKGenes}},
-#'          \code{\link{TrainRankModel}},
-#'          \code{\link{PredictRankModel}}
+#' @seealso \code{\link{maskTopKGenes}},
+#'          \code{\link{trainRankModel}},
+#'          \code{\link{predictRankModel}}
 #'
 #' @examples
 #' mat <- matrix(runif(1000), nrow = 100)
-#' ranked <- ComputeRankedMatrix(mat, k = 10)
-#' raw_expr <- ComputeRankedMatrix(mat, use_data = TRUE)
+#' ranked <- computeRankedMatrix(mat, k = 10)
+#' raw_expr <- computeRankedMatrix(mat, use_data = TRUE)
 #'
 #' @export
-ComputeRankedMatrix <- function(
+computeRankedMatrix <- function(
     data,
     weight_by_expr = TRUE,
     rank_zeros = FALSE,
@@ -144,7 +144,7 @@ ComputeRankedMatrix <- function(
         return(data)
     }
 
-    data <- MaskTopKGenes(data, k = k)
+    data <- maskTopKGenes(data, k = k)
 
     # Replace zeros with NA if rank_zeros is FALSE
     if (!rank_zeros) {

@@ -1,7 +1,7 @@
 Package: RankMap
 Title: Rank-based reference mapping for fast and robust cell type annotation 
     in spatial and single-cell transcriptomics
-Version: 0.3.1
+Version: 0.4.0
 Authors@R: 
     person(given = "Jinming", 
            family = "Cheng", 

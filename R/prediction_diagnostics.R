@@ -3,7 +3,7 @@
 #' Computes overall accuracy, per-class accuracy, and confusion matrix
 #' given predicted vs. true labels.
 #'
-#' @param prediction_df Output from \code{\link{PredictRankModel}
+#' @param prediction_df Output from \code{\link{predictRankModel}
 #'                      (return_confidence = TRUE)} or filtered version.
 #' @param truth A vector of true labels matching \code{prediction_df}.
 #' @param low_conf_label Character. Label used for low-confidence predictions
@@ -33,14 +33,14 @@
 #'     new_data = seu_xen
 #' )
 #'
-#' performance <- EvaluatePredictionPerformance(
+#' performance <- evaluatePredictionPerformance(
 #'     prediction_df = prediction_df,
 #'     truth = seu_xen$cell_type_SingleR
 #' )
 #' performance
 #'
 #' @export
-EvaluatePredictionPerformance <- function(
+evaluatePredictionPerformance <- function(
     prediction_df = NULL,
     truth = NULL,
     low_conf_label = "unknown") {

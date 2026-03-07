@@ -140,7 +140,7 @@ If ground truth labels are available,
 you can evaluate prediction accuracy using:
 
 ```{r}
-perf <- EvaluatePredictionPerformance(
+perf <- evaluatePredictionPerformance(
     prediction_df = pred_df,
     truth = seu_xen$cell_type_SingleR
 )
@@ -203,7 +203,7 @@ pred_df <- RankMap(
 Compare predictions with ground truth labels:
 
 ```{r}
-perf <- EvaluatePredictionPerformance(
+perf <- evaluatePredictionPerformance(
     prediction_df = pred_df,
     truth = sce_sp$cell_type_SingleR
 )

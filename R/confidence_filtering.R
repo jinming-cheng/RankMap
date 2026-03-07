@@ -4,7 +4,7 @@
 #' accuracy and retention rate.
 #' Requires ground truth labels for comparison.
 #'
-#' @param prediction_df A data frame from \code{\link{PredictRankModel}
+#' @param prediction_df A data frame from \code{\link{predictRankModel}
 #'                     (return_confidence = TRUE)}.
 #' @param truth A character or factor vector of true labels,
 #'              aligned with rows of \code{prediction_df}.
@@ -34,13 +34,13 @@
 #' truth <- c("A", "B", "A", "B", "B", "B", "A", "A", "B", "B")
 #'
 #' # Evaluate how accuracy and coverage change with threshold
-#' summary_df <- OptimizeConfidenceThreshold(pred_df, truth, plot = TRUE)
+#' summary_df <- optimizeConfidenceThreshold(pred_df, truth, plot = TRUE)
 #'
 #' # View result
 #' print(summary_df)
 #'
 #' @export
-OptimizeConfidenceThreshold <- function(
+optimizeConfidenceThreshold <- function(
     prediction_df,
     truth,
     thresholds = seq(0.1, 0.9, by = 0.05),
@@ -107,7 +107,7 @@ OptimizeConfidenceThreshold <- function(
 #' label (e.g., "unknown") and adds a confidence status column
 #' ("confident" or "uncertain").
 #'
-#' @param prediction_df A data frame from \code{\link{PredictRankModel}
+#' @param prediction_df A data frame from \code{\link{predictRankModel}
 #'                      (return_confidence = TRUE)}.
 #' @param threshold Numeric. Confidence threshold below which predictions
 #'                  are flagged. Default is \code{0.5}.
@@ -131,21 +131,21 @@ OptimizeConfidenceThreshold <- function(
 #' )
 #'
 #' # Apply threshold of 0.5 to flag low-confidence cells
-#' result <- FilterLowConfidenceCells(pred_df, threshold = 0.5)
+#' result <- filterLowConfidenceCells(pred_df, threshold = 0.5)
 #'
 #' # Show result
 #' print(result)
 #'
 #' # Remove confidence column and use custom label
 #' # for low-confidence predictions
-#' result2 <- FilterLowConfidenceCells(pred_df,
+#' result2 <- filterLowConfidenceCells(pred_df,
 #'     threshold = 0.6,
 #'     low_conf_label = "low_conf",
 #'     keep_confidence = FALSE
 #' )
 #'
 #' @export
-FilterLowConfidenceCells <- function(
+filterLowConfidenceCells <- function(
     prediction_df,
     threshold = 0.5,
     low_conf_label = "unknown",

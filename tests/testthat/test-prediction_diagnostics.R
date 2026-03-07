@@ -1,4 +1,4 @@
-test_that("Test EvaluatePredictionPerformance", {
+test_that("Test evaluatePredictionPerformance", {
     seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
         package = "RankMap"
     ))
@@ -13,14 +13,14 @@ test_that("Test EvaluatePredictionPerformance", {
         new_data = seu_xen
     )
 
-    performance <- EvaluatePredictionPerformance(
+    performance <- evaluatePredictionPerformance(
         prediction_df = prediction_df,
         truth = seu_xen$cell_type_SingleR,
     )
 
     expect_true(is.list(performance))
 
-    expect_error(EvaluatePredictionPerformance(
+    expect_error(evaluatePredictionPerformance(
         prediction_df = prediction_df,
         truth = seu_xen$cell_type_SingleR[1:3],
     ))

@@ -15,12 +15,12 @@
 #' not considered a level.
 #'
 #' @examples
-#' FactorSorted(c("a", "b", "a", "c", "b", "a"))
-#' FactorSorted(c("a", "b", "a", "c", "b", "a"), decreasing = FALSE)
-#' FactorSorted(factor(c("x", "y", "x", NA)))
+#' factorSorted(c("a", "b", "a", "c", "b", "a"))
+#' factorSorted(c("a", "b", "a", "c", "b", "a"), decreasing = FALSE)
+#' factorSorted(factor(c("x", "y", "x", NA)))
 #'
 #' @export
-FactorSorted <- function(x, decreasing = TRUE) {
+factorSorted <- function(x, decreasing = TRUE) {
     x <- factor(x)
     x <- droplevels(x)
     ordered_levels <- sort(table(x), decreasing = decreasing)
