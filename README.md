@@ -13,16 +13,16 @@ coverage](https://codecov.io/gh/jinming-cheng/RankMap/graph/badge.svg)](https://
 
 RankMap is a fast, robust, and scalable method for reference-based cell
 type annotation of single-cell and spatial transcriptomics data. It
-transforms gene expression matrices into sparse ranked representations
-and applies multinomial regression via the glmnet framework to predict
-cell types. This rank-based strategy enhances robustness to batch
-effects, platform differences, and partial gene coverage, making RankMap
-especially suitable for technologies like Xenium and MERFISH. The
-package supports flexible preprocessing, fast model training and
-prediction, and is compatible with Seurat, SingleCellExperiment, and
-SpatialExperiment objects. RankMap achieves competitive accuracy with
-significantly lower runtime than existing methods such as SingleR,
-Azimuth, and RCTD.
+transforms gene expression matrices into ranked representations based on
+the top-k expressed genes per cell and applies multinomial regression
+via the glmnet framework to predict cell types. This rank-based strategy
+improves robustness to batch effects, platform differences, and partial
+gene coverage, making RankMap particularly suitable for technologies
+such as Xenium and MERFISH. The package supports flexible preprocessing,
+fast model training and prediction, and is compatible with Seurat,
+SingleCellExperiment, and SpatialExperiment objects. RankMap achieves
+competitive accuracy with significantly lower runtime than existing
+methods such as SingleR, Azimuth, and RCTD.
 
 Quick start guide can be found
 [here](https://jinming-cheng.github.io/RankMap/index.html).
@@ -37,8 +37,8 @@ devtools::install_github("jinming-cheng/RankMap")
 
 ## Quick Start
 
-An example of predicting cell types for Xenium spatial data using a
-well-annotated single-cell dataset as reference
+Example: predicting cell types for Xenium spatial data using a
+well-annotated single-cell reference dataset with RankMap.
 
 ``` r
 # load data
@@ -50,13 +50,15 @@ seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",
     package = "RankMap"
 ))
 
-# predict cell types, if unsure about k (default 20), set k to 100.
+# predict cell types
+# if unsure about k (default 20), using k = 100 is a reasonable general choice
 pred_df <- RankMap(
     ref_data = seu_sc,
     ref_labels = seu_sc$cell_type,
-    new_data = seu_xen
+    new_data = seu_xen,
     k = 100
 )
+
 head(pred_df)
 ```
 
