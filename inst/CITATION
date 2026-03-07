@@ -1,0 +1,17 @@
+citHeader("To cite RankMap in publications, please use:")
+
+bibentry(
+  bibtype  = "Article",
+  title    = "RankMap: Rank-based reference mapping for fast and robust cell type annotation in spatial and single-cell transcriptomics",
+  author   = c(person("Jinming", "Cheng"),
+               person("Shengdi", "Li"),
+               person("Serim", "Kim"),
+               person("Chow Hiang", "Ang"),
+               person("Sin Chi", "Chew"),
+               person("Pierce Kah Hoe", "Chow"),
+               person("Nan", "Liu")
+               ),
+  journal  = "bioRxiv",
+  year     = "2026",
+  doi      = "10.64898/2026.03.01.708931"
+)
