@@ -68,7 +68,7 @@ both predictions and the trained model.
 Default is \code{FALSE}.}
 
 \item{...}{Additional arguments passed to
-\code{\link{ComputeRankedMatrix}}.}
+\code{\link{computeRankedMatrix}}.}
 }
 \value{
 A data frame of predictions (by default),
