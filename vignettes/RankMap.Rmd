@@ -93,6 +93,7 @@ devtools::install_github("jinming-cheng/RankMap")
 
 ```{r}
 library(RankMap)
+library(Seurat)
 ```
 
 Load example single-cell RNA-seq dataset (17,597 genes x 150 cells):
@@ -163,7 +164,9 @@ Convert `Seurat` objects into `SingleCellExperiment` objects:
 
 ```{r}
 library(SingleCellExperiment)
+```
 
+```{r}
 sce_sc <- SingleCellExperiment(
     assays = list(
         counts = GetAssayData(seu_sc, layer = "counts"),
