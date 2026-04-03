@@ -21,6 +21,7 @@ Quick start guide can be found
 The *RankMap* package can be installed from GitHub by using:
 
 ``` r
+
 devtools::install_github("jinming-cheng/RankMap")
 ```
 
@@ -30,6 +31,9 @@ Example: predicting cell types for Xenium spatial data using a
 well-annotated single-cell reference dataset with RankMap.
 
 ``` r
+
+library(RankMap)
+
 # load data
 seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
     package = "RankMap"

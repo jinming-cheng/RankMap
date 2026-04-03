@@ -54,16 +54,7 @@ A list with:
 seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
     package = "RankMap"
 ))
-#> Loading required package: SeuratObject
-#> Loading required package: sp
-#> ‘SeuratObject’ was built under R 4.4.0 but the current version is
-#> 4.4.2; it is recomended that you reinstall ‘SeuratObject’ as the ABI
-#> for R may have changed
-#> 
-#> Attaching package: ‘SeuratObject’
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     intersect, t
+#> Loading required namespace: SeuratObject
 
 # Read in Xenium spatial data
 seu_xen <- readRDS(system.file("extdata", "seu_xen.rds",

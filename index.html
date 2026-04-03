@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">RankMap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,9 @@
 </h2>
 <p>Example: predicting cell types for Xenium spatial data using a well-annotated single-cell reference dataset with RankMap.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinming-cheng/RankMap">RankMap</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load data</span></span>
 <span><span class="va">seu_sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seu_sc.rds"</span>,</span>
 <span>    package <span class="op">=</span> <span class="st">"RankMap"</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
