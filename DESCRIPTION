@@ -18,7 +18,7 @@ Description: RankMap is a fast and scalable tool for reference-based
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports: 
     dplyr,
     glmnet,
@@ -35,7 +35,7 @@ biocViews: Spatial, SingleCell, Transcriptomics, GeneExpression,
 URL: https://github.com/jinming-cheng/RankMap
 BugReports: https://github.com/jinming-cheng/RankMap/issues
 Depends: 
-    R (>= 4.4.0)
+    R (>= 4.6.0)
 Suggests: 
     BiocStyle,
     knitr,
