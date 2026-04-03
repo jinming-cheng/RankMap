@@ -57,6 +57,8 @@ Example: predicting cell types for Xenium spatial data using a
 well-annotated single-cell reference dataset with RankMap.
 
 ```r
+library(RankMap)
+
 # load data
 seu_sc <- readRDS(system.file("extdata", "seu_sc.rds",
     package = "RankMap"

@@ -74,10 +74,13 @@ cell type prediction.
 
 # Installation
 
-Install **RankMap** from GitHub:
+Install RankMap from Bioconductor
+```{r install_pkg, eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
 
-```{r, eval=FALSE}
-devtools::install_github("jinming-cheng/RankMap")
+BiocManager::install("RankMap")
 ```
 
 <!-- %                                                 % -->
@@ -91,21 +94,21 @@ devtools::install_github("jinming-cheng/RankMap")
 
 ## Load Data
 
-```{r}
+```{r load_pkgs}
 library(RankMap)
 library(Seurat)
 ```
 
 Load example single-cell RNA-seq dataset (17,597 genes x 150 cells):
 
-```{r}
+```{r read_sc}
 seu_sc <- readRDS(system.file("extdata", "seu_sc.rds", package = "RankMap"))
 seu_sc
 ```
 
 Load example Xenium spatial transcriptomics dataset (313 genes x 150 cells):
 
-```{r}
+```{r read_xen}
 seu_xen <- readRDS(system.file("extdata", "seu_xen.rds", package = "RankMap"))
 seu_xen
 ```
@@ -119,7 +122,7 @@ a smaller `k` (e.g., `k = 20`) is typically sufficient.
 For single-cell RNA-seq with deeper coverage, 
 larger values of `k` (e.g., 100 or 200) are generally recommended.
 
-```{r}
+```{r run_rankmap}
 pred_df <- RankMap(
     ref_data = seu_sc,
     ref_labels = seu_sc$cell_type,
@@ -131,7 +134,7 @@ pred_df <- RankMap(
 The result is a `data.frame` containing: 
 `cell_id`, `predicted_cell_type` and `confidence`
 
-```{r}
+```{r pred_res}
 head(pred_df)
 ```
 
@@ -140,7 +143,7 @@ head(pred_df)
 If ground truth labels are available, 
 you can evaluate prediction accuracy using:
 
-```{r}
+```{r pred_performance}
 perf <- evaluatePredictionPerformance(
     prediction_df = pred_df,
     truth = seu_xen$cell_type_SingleR
@@ -162,11 +165,11 @@ perf
 
 Convert `Seurat` objects into `SingleCellExperiment` objects:
 
-```{r}
+```{r load_pkg_sce}
 library(SingleCellExperiment)
 ```
 
-```{r}
+```{r prepare_sce_data}
 sce_sc <- SingleCellExperiment(
     assays = list(
         counts = GetAssayData(seu_sc, layer = "counts"),
@@ -192,7 +195,7 @@ top-ranked genes is unknown.
 When using `SummarizedExperiment` input, the `logcounts` assay 
 is used automatically.
 
-```{r}
+```{r run_rankmap_sce}
 pred_df <- RankMap(
     ref_data = sce_sc,
     ref_labels = sce_sc$cell_type,
@@ -205,7 +208,7 @@ pred_df <- RankMap(
 
 Compare predictions with ground truth labels:
 
-```{r}
+```{r pred_performance_sce}
 perf <- evaluatePredictionPerformance(
     prediction_df = pred_df,
     truth = sce_sp$cell_type_SingleR
@@ -220,7 +223,7 @@ perf
 
 # Session Info
 
-```{r}
+```{r sessioninfo}
 sessionInfo()
 ```
 

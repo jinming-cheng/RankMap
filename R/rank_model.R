@@ -1,3 +1,21 @@
+#' Transpose matrix with sparse support
+#'
+#' Internal helper to transpose a matrix, using \code{Matrix::t} for
+#' \code{dgCMatrix} objects and base \code{t()} otherwise.
+#'
+#' @param x A matrix-like object.
+#' @return A transposed matrix.
+#' @keywords internal
+#' @noRd
+.transposeMatrix <- function(x) {
+    if (inherits(x, "dgCMatrix")) {
+        Matrix::t(x)
+    } else {
+        t(x)
+    }
+}
+
+
 #' Train Multinomial Rank-Based Model
 #'
 #' This function trains a multinomial logistic regression model
@@ -57,17 +75,13 @@ trainRankModel <- function(
     # Compute ranked expression
     rank_expr <- computeRankedMatrix(data, ...)
 
-    # Transpose to cells (rows) × genes (columns)
-    if (inherits(rank_expr, "dgCMatrix")) {
-        rank_expr <- Matrix::t(rank_expr)
-    } else {
-        rank_expr <- t(rank_expr)
-    }
+    # Transpose to cells (rows) x genes (columns)
+    rank_expr <- .transposeMatrix(rank_expr)
 
     labels <- as.factor(labels)
 
     if (cv) {
-        model <- glmnet::cv.glmnet(
+        model <- cv.glmnet(
             x = rank_expr,
             y = labels,
             family = "multinomial",
@@ -75,7 +89,7 @@ trainRankModel <- function(
             nfolds = nfolds
         )
     } else {
-        model <- glmnet::glmnet(
+        model <- glmnet(
             x = rank_expr,
             y = labels,
             family = "multinomial",
@@ -159,12 +173,8 @@ predictRankModel <- function(
 
     rank_expr <- computeRankedMatrix(new_data, ...)
 
-    if (inherits(rank_expr, "dgCMatrix")) {
-        rank_expr <- Matrix::t(rank_expr)
-    } else {
-        rank_expr <- t(rank_expr)
-    }
-
+    # Transpose ranked matrix
+    rank_expr <- .transposeMatrix(rank_expr)
 
     lambda_to_use <- lambda
     if (is.null(lambda)) {
