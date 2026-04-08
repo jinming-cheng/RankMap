@@ -34,24 +34,39 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.99.1" id="rankmap-0991">RankMap 0.99.1<a class="anchor" aria-label="anchor" href="#rankmap-0991"></a></h2>
+<div class="section level3">
+<h3 id="changes-0-99-1">Changes<a class="anchor" aria-label="anchor" href="#changes-0-99-1"></a></h3>
+<ul><li>Updated <code>DESCRIPTION</code> to require <code>R (&gt;= 4.6.0)</code>.</li>
+<li>Refactored repeated matrix transposition logic in <code><a href="../reference/TrainRankModel.html">trainRankModel()</a></code> and <code><a href="../reference/PredictRankModel.html">predictRankModel()</a></code> into an internal helper function (<code>.transposeMatrix</code>).</li>
+<li>Reduced use of <code>::</code> by importing selected functions (e.g., <code>glmnet()</code>, <code>cv.glmnet()</code>) to improve dependency checking.</li>
+<li>Added package-level documentation (<code>RankMap-package.R</code>).</li>
+<li>Updated vignette:
+<ul><li>Removed GitHub installation instructions.</li>
+<li>Added Bioconductor installation instructions using <code>BiocManager::install("RankMap")</code>.</li>
+<li>Added unique labels to all code chunks.</li>
+</ul></li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.99.0" id="rankmap-0990">RankMap 0.99.0<a class="anchor" aria-label="anchor" href="#rankmap-0990"></a></h2>
 <p><em>Initial submission to Bioconductor</em></p>
 <div class="section level3">
 <h3 id="new-features-0-99-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-99-0"></a></h3>
-<ul><li>Fast, robust, and scalable reference-based cell type annotation using multinomial regression on sparse ranked expression matrices.</li>
+<ul><li>Fast, robust, and scalable reference-based cell type annotation using multinomial regression on ranked expression matrices.</li>
 <li>Supports both <strong>single-cell</strong> and <strong>spatial transcriptomics</strong> data.</li>
 <li>Compatible with <code>Seurat</code>, <code>SingleCellExperiment</code>, and <code>SpatialExperiment</code> objects.</li>
 <li>Core function <code><a href="../reference/RankMap.html">RankMap()</a></code> provides a streamlined pipeline for preprocessing, model training, and prediction.</li>
 <li>Customizable preprocessing: top-K gene masking, optional binning, expression weighting, and scaling.</li>
 <li>Additional functions:
 <ul><li>
-<code>ComputeRankedMatrix()</code> – generate ranked matrices</li>
+<code><a href="../reference/ComputeRankedMatrix.html">computeRankedMatrix()</a></code> – generate ranked matrices</li>
 <li>
-<code>TrainRankModel()</code> – train multinomial GLM</li>
+<code><a href="../reference/TrainRankModel.html">trainRankModel()</a></code> – train multinomial GLM</li>
 <li>
-<code>PredictRankModel()</code> – apply trained model to query data</li>
+<code><a href="../reference/PredictRankModel.html">predictRankModel()</a></code> – apply trained model to query data</li>
 <li>
-<code>EvaluatePredictionPerformance()</code> – assess accuracy</li>
+<code><a href="../reference/EvaluatePredictionPerformance.html">evaluatePredictionPerformance()</a></code> – assess accuracy</li>
 </ul></li>
 <li>Optimized for large datasets with significantly faster runtime than <code>SingleR</code>, <code>Azimuth</code>, and <code>RCTD</code>.</li>
 </ul></div>

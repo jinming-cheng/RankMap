@@ -311,7 +311,7 @@ perf
 ``` r
 
 sessionInfo()
-#> R Under development (unstable) (2026-03-28 r89738)
+#> R Under development (unstable) (2026-04-05 r89793)
 #> Platform: x86_64-pc-linux-gnu
 #> Running under: Ubuntu 24.04.4 LTS
 #> 
@@ -338,7 +338,7 @@ sessionInfo()
 #>  [1] SingleCellExperiment_1.33.2 SummarizedExperiment_1.41.1
 #>  [3] Biobase_2.71.0              GenomicRanges_1.63.1       
 #>  [5] Seqinfo_1.1.0               IRanges_2.45.0             
-#>  [7] S4Vectors_0.49.0            BiocGenerics_0.57.0        
+#>  [7] S4Vectors_0.49.1            BiocGenerics_0.57.0        
 #>  [9] generics_0.1.4              MatrixGenerics_1.23.0      
 #> [11] matrixStats_1.5.0           Seurat_5.4.0               
 #> [13] SeuratObject_5.3.0          sp_2.2-1                   
@@ -346,7 +346,7 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] RColorBrewer_1.1-3     jsonlite_2.0.0         shape_1.4.6.1         
-#>   [4] magrittr_2.0.4         spatstat.utils_3.2-2   farver_2.1.2          
+#>   [4] magrittr_2.0.5         spatstat.utils_3.2-2   farver_2.1.2          
 #>   [7] rmarkdown_2.31         fs_2.0.1               ragg_1.5.2            
 #>  [10] vctrs_0.7.2            ROCR_1.0-12            spatstat.explore_3.8-0
 #>  [13] S4Arrays_1.11.1        htmltools_0.5.9        SparseArray_1.11.13   
@@ -354,7 +354,7 @@ sessionInfo()
 #>  [19] KernSmooth_2.23-26     bslib_0.10.0           htmlwidgets_1.6.4     
 #>  [22] desc_1.4.3             ica_1.0-3              plyr_1.8.9            
 #>  [25] plotly_4.12.0          zoo_1.8-15             cachem_1.1.0          
-#>  [28] igraph_2.2.2           mime_0.13              lifecycle_1.0.5       
+#>  [28] igraph_2.2.3           mime_0.13              lifecycle_1.0.5       
 #>  [31] iterators_1.0.14       pkgconfig_2.0.3        Matrix_1.7-5          
 #>  [34] R6_2.6.1               fastmap_1.2.0          fitdistrplus_1.2-6    
 #>  [37] future_1.70.0          shiny_1.13.0           digest_0.6.39         
@@ -377,7 +377,7 @@ sessionInfo()
 #>  [88] tidyselect_1.2.1       miniUI_0.1.2           pbapply_1.7-4         
 #>  [91] knitr_1.51             gridExtra_2.3          bookdown_0.46         
 #>  [94] scattermore_1.2        xfun_0.57              stringi_1.8.7         
-#>  [97] lazyeval_0.2.2         yaml_2.3.12            evaluate_1.0.5        
+#>  [97] lazyeval_0.2.3         yaml_2.3.12            evaluate_1.0.5        
 #> [100] codetools_0.2-20       tibble_3.3.1           BiocManager_1.30.27   
 #> [103] cli_3.6.5              uwot_0.2.4             xtable_1.8-8          
 #> [106] reticulate_1.45.0      systemfonts_1.3.2      jquerylib_0.1.4       
@@ -386,5 +386,5 @@ sessionInfo()
 #> [115] pkgdown_2.2.0          ggplot2_4.0.2          dotCall64_1.2         
 #> [118] listenv_0.10.1         glmnet_4.1-10          viridisLite_0.4.3     
 #> [121] scales_1.4.0           ggridges_0.5.7         purrr_1.2.1           
-#> [124] rlang_1.1.7            cowplot_1.2.0
+#> [124] rlang_1.2.0            cowplot_1.2.0
 ```
