@@ -18,5 +18,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Jinming Cheng \email{jinming.cheng@outlook.com} (\href{https://orcid.org/0000-0003-3806-4694}{ORCID})
 
+Authors:
+\itemize{
+  \item Jinming Cheng \email{jinming.cheng@outlook.com} (\href{https://orcid.org/0000-0003-3806-4694}{ORCID})
+}
+
 }
 \keyword{internal}
