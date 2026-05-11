@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">RankMap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,22 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The <em>RankMap</em> package can be installed from GitHub by using:</p>
+<p>Install RankMap from Bioconductor:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jinming-cheng/RankMap"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"RankMap"</span><span class="op">)</span></span></code></pre></div>
+<p>Install RankMap from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"jinming-cheng/RankMap"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <p>Example: predicting cell types for Xenium spatial data using a well-annotated single-cell reference dataset with RankMap.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinming-cheng/RankMap">RankMap</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># load data</span></span>
@@ -93,23 +100,23 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>Please cite this article if you use RankMap:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>To cite RankMap <span class="cf">in</span> publications, please use<span class="sc">:</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  Cheng J, Li S, Kim S, Ang C, Chew S, Chow P, Liu <span class="fu">N</span> (<span class="dv">2026</span>). <span class="st">"RankMap:</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="st">  Rank-based reference mapping for fast and robust cell type annotation</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="st">  in spatial and single-cell transcriptomics."</span> _bioRxiv_.</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  doi<span class="sc">:</span><span class="fl">10.64898</span><span class="sc">/</span><span class="dv">2026</span>.<span class="dv">03</span>.<span class="fl">01.708931</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.64898</span><span class="sc">/</span><span class="dv">2026</span>.<span class="dv">03</span>.<span class="fl">01.708931</span><span class="sc">&gt;</span>.</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    title <span class="ot">=</span> {RankMap<span class="sc">:</span> Rank<span class="sc">-</span>based reference mapping <span class="cf">for</span> fast and robust cell type annotation <span class="cf">in</span> spatial and single<span class="sc">-</span>cell transcriptomics},</span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>    author <span class="ot">=</span> {Jinming Cheng and Shengdi Li and Serim Kim and Chow Hiang Ang and Sin Chi Chew and Pierce Kah Hoe Chow and Nan Liu},</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    journal <span class="ot">=</span> {bioRxiv},</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.64898</span><span class="sc">/</span><span class="dv">2026</span>.<span class="dv">03</span>.<span class="fl">01.708931</span>},</span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>To cite RankMap <span class="cf">in</span> publications, please use<span class="sc">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  Cheng J, Li S, Kim S, Ang C, Chew S, Chow P, Liu <span class="fu">N</span> (<span class="dv">2026</span>). <span class="st">"RankMap:</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="st">  Rank-based reference mapping for fast and robust cell type annotation</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="st">  in spatial and single-cell transcriptomics."</span> _bioRxiv_.</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  doi<span class="sc">:</span><span class="fl">10.64898</span><span class="sc">/</span><span class="dv">2026</span>.<span class="dv">03</span>.<span class="fl">01.708931</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.64898</span><span class="sc">/</span><span class="dv">2026</span>.<span class="dv">03</span>.<span class="fl">01.708931</span><span class="sc">&gt;</span>.</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    title <span class="ot">=</span> {RankMap<span class="sc">:</span> Rank<span class="sc">-</span>based reference mapping <span class="cf">for</span> fast and robust cell type annotation <span class="cf">in</span> spatial and single<span class="sc">-</span>cell transcriptomics},</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>    author <span class="ot">=</span> {Jinming Cheng and Shengdi Li and Serim Kim and Chow Hiang Ang and Sin Chi Chew and Pierce Kah Hoe Chow and Nan Liu},</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>    journal <span class="ot">=</span> {bioRxiv},</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.64898</span><span class="sc">/</span><span class="dv">2026</span>.<span class="dv">03</span>.<span class="fl">01.708931</span>},</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

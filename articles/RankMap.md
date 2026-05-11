@@ -336,11 +336,11 @@ sessionInfo()
 #>  [9] generics_0.1.4              MatrixGenerics_1.24.0      
 #> [11] matrixStats_1.5.0           Seurat_5.5.0               
 #> [13] SeuratObject_5.4.0          sp_2.2-1                   
-#> [15] RankMap_1.1.0               BiocStyle_2.40.0           
+#> [15] RankMap_1.1.1               BiocStyle_2.40.0           
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] RColorBrewer_1.1-3     jsonlite_2.0.0         shape_1.4.6.1         
-#>   [4] magrittr_2.0.5         spatstat.utils_3.2-2   farver_2.1.2          
+#>   [4] magrittr_2.0.5         spatstat.utils_3.2-3   farver_2.1.2          
 #>   [7] rmarkdown_2.31         fs_2.1.0               ragg_1.5.2            
 #>  [10] vctrs_0.7.3            ROCR_1.0-12            spatstat.explore_3.8-0
 #>  [13] S4Arrays_1.12.0        htmltools_0.5.9        SparseArray_1.12.2    
@@ -362,7 +362,7 @@ sessionInfo()
 #>  [61] glue_1.8.1             nlme_3.1-169           promises_1.5.0        
 #>  [64] grid_4.6.0             Rtsne_0.17             cluster_2.1.8.2       
 #>  [67] reshape2_1.4.5         gtable_0.3.6           spatstat.data_3.1-9   
-#>  [70] tidyr_1.3.2            data.table_1.18.2.1    XVector_0.52.0        
+#>  [70] tidyr_1.3.2            data.table_1.18.4      XVector_0.52.0        
 #>  [73] spatstat.geom_3.7-3    RcppAnnoy_0.0.23       ggrepel_0.9.8         
 #>  [76] RANN_2.6.2             foreach_1.5.2          pillar_1.11.1         
 #>  [79] stringr_1.6.0          spam_2.11-3            RcppHNSW_0.6.0        

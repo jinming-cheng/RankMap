@@ -18,11 +18,22 @@ Quick start guide can be found
 
 ## Installation
 
-The *RankMap* package can be installed from GitHub by using:
+Install RankMap from Bioconductor:
 
 ``` r
 
-devtools::install_github("jinming-cheng/RankMap")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+
+BiocManager::install("RankMap")
+```
+
+Install RankMap from GitHub:
+
+``` r
+
+pak::pak("jinming-cheng/RankMap")
 ```
 
 ## Quick Start

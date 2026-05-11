@@ -25,3 +25,5 @@
   : Sample Cells by Cell Type with Minimum Representation
 - [`trainRankModel()`](https://github.com/jinming-cheng/RankMap/reference/TrainRankModel.md)
   : Train Multinomial Rank-Based Model
+- [`topCellTypeGenes()`](https://github.com/jinming-cheng/RankMap/reference/topCellTypeGenes.md)
+  : Get top expressed genes for each cell type

@@ -1,5 +1,15 @@
 # Changelog
 
+## RankMap 1.1.1
+
+- Add
+  [`topCellTypeGenes()`](https://github.com/jinming-cheng/RankMap/reference/topCellTypeGenes.md)
+  function
+
+## RankMap 1.0.0
+
+Bioconductor 3.23 Release
+
 ## RankMap 0.99.1
 
 ### Changes
