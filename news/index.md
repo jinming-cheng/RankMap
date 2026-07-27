@@ -1,5 +1,9 @@
 # Changelog
 
+## RankMap 1.1.2
+
+- Update vignette
+
 ## RankMap 1.1.1
 
 - Add
