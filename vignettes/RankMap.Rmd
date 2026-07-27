@@ -23,7 +23,7 @@ output:
 bibliography-style: plain
 ---
 
-```{r, include = FALSE}
+```{r knitr_options, include = FALSE}
 knitr::opts_chunk$set(
     eval = TRUE,
     collapse = TRUE,
@@ -186,6 +186,40 @@ sce_sp <- SingleCellExperiment(
     colData = seu_xen[[]] # seu_xen@meta.data
 )
 ```
+
+
+## Select cell type features (optional)
+
+Feature selection can optionally be performed before running
+`RankMap()`. In this example, we select the top 100 highly expressed
+genes for each cell type (`n = 100`) from the reference dataset.
+Only genes shared between the reference and query datasets are
+considered.
+
+Restricting the analysis to representative cell type features can
+reduce the number of input genes and may improve discrimination
+between transcriptionally similar cell types by emphasizing their
+most characteristic expression patterns.
+
+```{r select_top_genes}
+common_genes <- intersect(rownames(sce_sc), rownames(sce_sp))
+
+top_genes <- topCellTypeGenes(
+    data = sce_sc,
+    cell_type = sce_sc$cell_type,
+    n = 100,
+    genes = common_genes
+)
+
+sce_sc <- sce_sc[top_genes, ]
+```
+
+The selected feature set contains the following number of unique genes:
+
+```{r n_top_genes}
+length(top_genes)
+```
+
 
 ## Predict Cell Types
 
